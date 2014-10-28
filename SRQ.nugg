@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nugget name="ZSRQ">
+<nugget name="SRQ">
  <CLAS CLSNAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" DESCRIPT="Dynamic Remote Exception" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
   <implementing CLSNAME="ZCX_DYN_REMOTE" REFCLSNAME="IF_T100_MESSAGE" VERSION="1" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="0 "/>
   <localImplementation>*&quot;* local class implementation for public class
@@ -10,53 +10,93 @@
 *&quot;* implementation or private method&apos;s signature</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ASSIGN_COMP_FAILED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="39 " SRCCOLUMN1="4 " SRCROW2="46 " SRCCOLUMN2="28 " LOCKED="X" TYPESRC_LENG="320 " TYPESRC="begin of ASSIGN_COMP_FAILED,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;008&apos;,
-      attr1 type scx_attrname value &apos;FIELD&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of ASSIGN_COMP_FAILED
+  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ASSIGN_COMP_FAILED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="39 " SRCCOLUMN1="4 " SRCROW2="46 " SRCCOLUMN2="28 " LOCKED="X" TYPESRC_LENG="320 " TYPESRC="begin of ASSIGN_COMP_FAILED,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;008&apos;,
+
+      attr1 type scx_attrname value &apos;FIELD&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of ASSIGN_COMP_FAILED
+
 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ASSIGN_FAILED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="48 " SRCCOLUMN1="4 " SRCROW2="55 " SRCCOLUMN2="23 " LOCKED="X" TYPESRC_LENG="305 " TYPESRC="begin of ASSIGN_FAILED,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;010&apos;,
-      attr1 type scx_attrname value &apos;&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of ASSIGN_FAILED
+  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ASSIGN_FAILED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="48 " SRCCOLUMN1="4 " SRCROW2="55 " SRCCOLUMN2="23 " LOCKED="X" TYPESRC_LENG="305 " TYPESRC="begin of ASSIGN_FAILED,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;010&apos;,
+
+      attr1 type scx_attrname value &apos;&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of ASSIGN_FAILED
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="FIELD" VERSION="1" LANGU="E" DESCRIPT="Field Name" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="NO_FIELD" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="30 " SRCCOLUMN1="4 " SRCROW2="37 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="300 " TYPESRC="begin of NO_FIELD,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;006&apos;,
-      attr1 type scx_attrname value &apos;FIELD&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of NO_FIELD
+  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="NO_FIELD" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="30 " SRCCOLUMN1="4 " SRCROW2="37 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="300 " TYPESRC="begin of NO_FIELD,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;006&apos;,
+
+      attr1 type scx_attrname value &apos;FIELD&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of NO_FIELD
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="RFC_DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="RFCDEST" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="RFC_READ" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="21 " SRCCOLUMN1="4 " SRCROW2="28 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="315 " TYPESRC="begin of RFC_READ,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;007&apos;,
-      attr1 type scx_attrname value &apos;TABLE&apos;,
-      attr2 type scx_attrname value &apos;RFC_DESTINATION&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of RFC_READ
+  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="RFC_READ" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="21 " SRCCOLUMN1="4 " SRCROW2="28 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="315 " TYPESRC="begin of RFC_READ,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;007&apos;,
+
+      attr1 type scx_attrname value &apos;TABLE&apos;,
+
+      attr2 type scx_attrname value &apos;RFC_DESTINATION&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of RFC_READ
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="TABLE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRUKNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="19 " SRCCOLUMN2="24 " LOCKED="X" TYPESRC_LENG="307 " TYPESRC="begin of ZCX_DYN_REMOTE,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;000&apos;,
-      attr1 type scx_attrname value &apos;&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of ZCX_DYN_REMOTE
+  <attribute CLSNAME="ZCX_DYN_REMOTE" CMPNAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="19 " SRCCOLUMN2="24 " LOCKED="X" TYPESRC_LENG="307 " TYPESRC="begin of ZCX_DYN_REMOTE,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;000&apos;,
+
+      attr1 type scx_attrname value &apos;&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of ZCX_DYN_REMOTE
+
 "/>
   <inheritance CLSNAME="ZCX_DYN_REMOTE" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
  </CLAS>
@@ -716,81 +756,145 @@
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
   <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="DATATYPE" VERSION="1" LANGU="E" DESCRIPT="Data Type in ABAP Dictionary" EXPOSURE="2" STATE="1" EDITORDER="11 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="DATATYPE_D" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="DATA_CREATION" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="77 " SRCCOLUMN1="4 " SRCROW2="84 " SRCCOLUMN2="23 " LOCKED="X" TYPESRC_LENG="305 " TYPESRC="begin of DATA_CREATION,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;009&apos;,
-      attr1 type scx_attrname value &apos;&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of DATA_CREATION
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="DATA_CREATION" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="77 " SRCCOLUMN1="4 " SRCROW2="84 " SRCCOLUMN2="23 " LOCKED="X" TYPESRC_LENG="305 " TYPESRC="begin of DATA_CREATION,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;009&apos;,
+
+      attr1 type scx_attrname value &apos;&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of DATA_CREATION
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="DELEM" VERSION="1" LANGU="E" DESCRIPT="Data element (semantic domain)" EXPOSURE="2" STATE="1" EDITORDER="13 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ROLLNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="INTTYPE" VERSION="1" LANGU="E" DESCRIPT="ABAP data type (C,D,N,...)" EXPOSURE="2" STATE="1" EDITORDER="12 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="INTTYPE" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_DATATYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="41 " SRCCOLUMN1="4 " SRCROW2="48 " SRCCOLUMN2="21 " LOCKED="X" TYPESRC_LENG="309 " TYPESRC="begin of NO_DATATYPE,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;003&apos;,
-      attr1 type scx_attrname value &apos;DATATYPE&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of NO_DATATYPE
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_DATATYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="41 " SRCCOLUMN1="4 " SRCROW2="48 " SRCCOLUMN2="21 " LOCKED="X" TYPESRC_LENG="309 " TYPESRC="begin of NO_DATATYPE,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;003&apos;,
+
+      attr1 type scx_attrname value &apos;DATATYPE&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of NO_DATATYPE
+
 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_DELEM" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="59 " SRCCOLUMN1="4 " SRCROW2="66 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="300 " TYPESRC="begin of NO_DELEM,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;005&apos;,
-      attr1 type scx_attrname value &apos;DELEM&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of NO_DELEM
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_DELEM" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="59 " SRCCOLUMN1="4 " SRCROW2="66 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="300 " TYPESRC="begin of NO_DELEM,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;005&apos;,
+
+      attr1 type scx_attrname value &apos;DELEM&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of NO_DELEM
+
 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_INTTYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="50 " SRCCOLUMN1="4 " SRCROW2="57 " SRCCOLUMN2="20 " LOCKED="X" TYPESRC_LENG="306 " TYPESRC="begin of NO_INTTYPE,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;004&apos;,
-      attr1 type scx_attrname value &apos;INTTYPE&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of NO_INTTYPE
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_INTTYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="50 " SRCCOLUMN1="4 " SRCROW2="57 " SRCCOLUMN2="20 " LOCKED="X" TYPESRC_LENG="306 " TYPESRC="begin of NO_INTTYPE,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;004&apos;,
+
+      attr1 type scx_attrname value &apos;INTTYPE&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of NO_INTTYPE
+
 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_STRUC" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="32 " SRCCOLUMN1="4 " SRCROW2="39 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="301 " TYPESRC="begin of NO_STRUC,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;002&apos;,
-      attr1 type scx_attrname value &apos;STRUCT&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of NO_STRUC
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="NO_STRUC" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="32 " SRCCOLUMN1="4 " SRCROW2="39 " SRCCOLUMN2="18 " LOCKED="X" TYPESRC_LENG="301 " TYPESRC="begin of NO_STRUC,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;002&apos;,
+
+      attr1 type scx_attrname value &apos;STRUCT&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of NO_STRUC
+
 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="OWN_LOGSYS_NOT_DEFINED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="68 " SRCCOLUMN1="4 " SRCROW2="75 " SRCCOLUMN2="32 " LOCKED="X" TYPESRC_LENG="323 " TYPESRC="begin of OWN_LOGSYS_NOT_DEFINED,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;011&apos;,
-      attr1 type scx_attrname value &apos;&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of OWN_LOGSYS_NOT_DEFINED
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="OWN_LOGSYS_NOT_DEFINED" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="68 " SRCCOLUMN1="4 " SRCROW2="75 " SRCCOLUMN2="32 " LOCKED="X" TYPESRC_LENG="323 " TYPESRC="begin of OWN_LOGSYS_NOT_DEFINED,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;011&apos;,
+
+      attr1 type scx_attrname value &apos;&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of OWN_LOGSYS_NOT_DEFINED
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="RFCDEST" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="RFCDEST" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="RFC_UNREACHABLE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="23 " SRCCOLUMN1="4 " SRCROW2="30 " SRCCOLUMN2="25 " LOCKED="X" TYPESRC_LENG="316 " TYPESRC="begin of RFC_UNREACHABLE,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;001&apos;,
-      attr1 type scx_attrname value &apos;RFCDEST&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of RFC_UNREACHABLE
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="RFC_UNREACHABLE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="23 " SRCCOLUMN1="4 " SRCROW2="30 " SRCCOLUMN2="25 " LOCKED="X" TYPESRC_LENG="316 " TYPESRC="begin of RFC_UNREACHABLE,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;001&apos;,
+
+      attr1 type scx_attrname value &apos;RFCDEST&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of RFC_UNREACHABLE
+
 "/>
   <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="STRUCT" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRUKNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
-  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="14 " SRCCOLUMN1="4 " SRCROW2="21 " SRCCOLUMN2="37 " LOCKED="X" TYPESRC_LENG="333 " TYPESRC="begin of ZCX_DYN_REMOTE_TYPE_BUILDER,
-      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
-      msgno type symsgno value &apos;000&apos;,
-      attr1 type scx_attrname value &apos;&apos;,
-      attr2 type scx_attrname value &apos;&apos;,
-      attr3 type scx_attrname value &apos;&apos;,
-      attr4 type scx_attrname value &apos;&apos;,
-    end of ZCX_DYN_REMOTE_TYPE_BUILDER
+  <attribute CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" CMPNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="14 " SRCCOLUMN1="4 " SRCROW2="21 " SRCCOLUMN2="37 " LOCKED="X" TYPESRC_LENG="333 " TYPESRC="begin of ZCX_DYN_REMOTE_TYPE_BUILDER,
+
+      msgid type symsgid value &apos;ZDYNTYPEBUILDER&apos;,
+
+      msgno type symsgno value &apos;000&apos;,
+
+      attr1 type scx_attrname value &apos;&apos;,
+
+      attr2 type scx_attrname value &apos;&apos;,
+
+      attr3 type scx_attrname value &apos;&apos;,
+
+      attr4 type scx_attrname value &apos;&apos;,
+
+    end of ZCX_DYN_REMOTE_TYPE_BUILDER
+
 "/>
   <inheritance CLSNAME="ZCX_DYN_REMOTE_TYPE_BUILDER" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
  </CLAS>
@@ -1086,145 +1190,162 @@ type-pools: abap.</localTypes>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_RFC_DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_TABLE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_QUERY" VERSION="1" LANGU="E" DESCRIPT="Table type for RFC_DB_OPT" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZRFC_DB_OPT_T"/>
-   <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_DATA_LENGTH" VERSION="1" LANGU="E" DESCRIPT="Package Length To Process (TAB512 limit)" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="I" PARVALUE="100"/>
+   <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_DATA_LENGTH" VERSION="1" LANGU="E" DESCRIPT="Package Length To Process (TAB512 limit)" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="I" PARVALUE="512"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="E_TABLE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="STANDARD TABLE"/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="2 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" DESCRIPT="Dynamic Remote Exception" MTDTYPE="0" EDITORDER="3 "/>
-   <source>method GET_REMOTE_TABLE_DATA.
+   <source>method get_remote_table_data.
 
-  data: lx_pir type ref to cx_parameter_invalid_range.
+    data: lx_pir type ref to cx_parameter_invalid_range.
 
-  data: lt_field    type standard table of rfc_db_fld,
-        lt_rfcfield type standard table of rfc_db_fld,
-        lt_data     type standard table of tab512,
-        ls_data     type tab512,
-        ls_field    type rfc_db_fld,
-        ls_rfcfield type rfc_db_fld,
-        lv_len      type i,
-        lv_tabix    type sytabix,
-        lv_databix  type sytabix,
-        lv_fgroup   type i,
-        lv_tot      type i.
+    data: lt_field    type standard table of rfc_db_fld,
+          lt_rfcfield type standard table of rfc_db_fld,
+          lt_data     type standard table of tab512,
+          ls_data     type tab512,
+          ls_field    type rfc_db_fld,
+          ls_rfcfield type rfc_db_fld,
+          lv_len      type i,
+          lv_times    type i,
+          lv_tabix    type sytabix,
+          lv_databix  type sytabix,
+          lv_fgroup   type i,
+          lv_tot      type i.
 
-  data: lo_strucdata  type ref to data,
-        lo_rstrucdata type ref to data.
+    data: lo_strucdata  type ref to data,
+          lo_rstrucdata type ref to data.
 
-  field-symbols: &lt;fs_line&gt;  type any,
-                 &lt;fs_rline&gt; type any,
-                 &lt;fs_field&gt; type any.
+    field-symbols: &lt;fs_line&gt;  type any,
+                   &lt;fs_rline&gt; type any,
+                   &lt;fs_field&gt; type any.
 
-  try.
+    try.
 
-*     build runtime structure of table passed
-      lo_rstrucdata = zcl_dyn_remote=&gt;build_runtime_data( i_table = e_table ).
+*       build runtime structure of table passed
+        lo_rstrucdata = zcl_dyn_remote=&gt;build_runtime_data( i_table = e_table ).
 
-      assign lo_rstrucdata-&gt;* to &lt;fs_rline&gt;.
+        assign lo_rstrucdata-&gt;* to &lt;fs_rline&gt;.
 
-*     prepare output
-      zcl_dyn_remote_type_builder=&gt;build_data( exporting i_rfcdest = i_rfc_destination i_struct = i_table importing e_strucdata = lo_strucdata ).
+*       prepare output
+        zcl_dyn_remote_type_builder=&gt;build_data( exporting i_rfcdest = i_rfc_destination i_struct = i_table importing e_strucdata = lo_strucdata ).
 
-      assign: lo_strucdata-&gt;* to &lt;fs_line&gt;.
+        assign: lo_strucdata-&gt;* to &lt;fs_line&gt;.
 
-*     get fields
-      lt_field = zcl_dyn_remote=&gt;get_remote_table_fields( i_rfc_destination = i_rfc_destination i_table = i_table ).
+*       get fields
+        lt_field = zcl_dyn_remote=&gt;get_remote_table_fields( i_rfc_destination = i_rfc_destination i_table = i_table ).
 
-      describe table lt_field lines lv_tot.
+        describe table lt_field lines lv_tot.
 
-      loop at lt_field into ls_field.
+        loop at lt_field into ls_field.
 
-*       get line index
-        lv_tabix = sy-tabix.
+*         get line index
+          lv_tabix = sy-tabix.
 
-*       get total fields length
-        lv_len = lv_len + ls_field-length.
+*         get total fields length
+          lv_len = lv_len + ls_field-length.
 
-*       check limit of data line in rfc_read_data (real 512)
-        if lv_len lt i_data_length.
-          clear: ls_field-length.
-          append ls_field to lt_rfcfield.
-        endif.
-
-*       over limit or last line -&gt; start getting data for this fields
-        if lv_len ge i_data_length or lv_tabix eq lv_tot.
-
-*         increase field group index (nb: initialized to 0!)
-          add 1 to lv_fgroup.
-
-*         remote read table
-          zcl_dyn_remote=&gt;rfc_read_table( exporting i_rfc_destination = i_rfc_destination i_table = i_table i_option = i_query changing c_field = lt_rfcfield c_data = lt_data ).
-
-*         map data
-          loop at lt_data into ls_data.
-
-            lv_databix = sy-tabix.
-
-            loop at lt_rfcfield into ls_rfcfield.
-
-              assign component ls_rfcfield-fieldname of structure &lt;fs_line&gt; to &lt;fs_field&gt;.
-
-              if sy-subrc ne 0.
-
-                raise exception type zcx_dyn_remote
-                   exporting
-                     textid          = zcx_dyn_remote=&gt;no_field
-                     table           = i_table
-                     field           = ls_rfcfield-fieldname.
-
-              endif.
-
-              &lt;fs_field&gt; = ls_data+ls_rfcfield-offset(ls_rfcfield-length).
-
-              clear: ls_rfcfield.
-            endloop.
-
-*           transfer result - dynamically typed and moved to prevent misfield association - could dump if se24 tested without a concrete local data type specified
-            move-corresponding &lt;fs_line&gt; to &lt;fs_rline&gt;.
-
-*           first field group -&gt; append
-            if lv_fgroup eq 1.
-              append &lt;fs_rline&gt; to e_table.
-*             get line index &amp; map new fields
-            else.
-
-              loop at lt_rfcfield into ls_rfcfield.
-*               transfer result - dynamically typed and moved to prevent misfield association - could dump if se24 tested without a concrete local data type specified
-                modify e_table index lv_databix from &lt;fs_rline&gt; transporting (ls_rfcfield-fieldname).
-                clear: ls_rfcfield.
-              endloop.
-
-            endif.
-
-            clear: ls_data.
-          endloop.
-
-          refresh: lt_rfcfield.
-
-          if lv_tabix ne lv_tot.
-            lv_len = ls_field-length.
+*         check limit of data line in rfc_read_data (real 512)
+          if lv_len lt i_data_length.
             clear: ls_field-length.
             append ls_field to lt_rfcfield.
           endif.
 
-        endif.
+          if lv_len ge i_data_length and lv_tabix eq lv_tot.
+            lv_times = 2.
+          else.
+            lv_times = 1.
+          endif.
 
-        refresh: lt_data.
-        clear: ls_field.
-      endloop.
+*         over limit or last line -&gt; start getting data for this fields
+          if lv_len ge i_data_length or lv_tabix eq lv_tot.
 
-    catch cx_sy_assign_cast_illegal_cast
-          cx_sy_assign_cast_unknown_type
-          cx_sy_assign_out_of_range.
+            do lv_times times.
 
-      raise exception type zcx_dyn_remote
-        exporting
-          textid = zcx_dyn_remote=&gt;assign_failed.
+              if sy-index gt 1.
+                refresh: lt_rfcfield, lt_data.
+                clear: ls_field-length.
+                append ls_field to lt_rfcfield.
+              endif.
 
-    catch cx_parameter_invalid_range into lx_pir.
+*             increase field group index (nb: initialized to 0!)
+              add 1 to lv_fgroup.
 
-      raise exception lx_pir.
+*             remote read table
+              zcl_dyn_remote=&gt;rfc_read_table( exporting i_rfc_destination = i_rfc_destination i_table = i_table i_option = i_query changing c_field = lt_rfcfield c_data = lt_data ).
 
-  endtry.
+*             map data
+              loop at lt_data into ls_data.
+
+                lv_databix = sy-tabix.
+
+                loop at lt_rfcfield into ls_rfcfield.
+
+                  assign component ls_rfcfield-fieldname of structure &lt;fs_line&gt; to &lt;fs_field&gt;.
+
+                  if sy-subrc ne 0.
+
+                    raise exception type zcx_dyn_remote
+                      exporting
+                        textid = zcx_dyn_remote=&gt;no_field
+                        table  = i_table
+                        field  = ls_rfcfield-fieldname.
+
+                  endif.
+
+                  &lt;fs_field&gt; = ls_data+ls_rfcfield-offset(ls_rfcfield-length).
+
+                  clear: ls_rfcfield.
+                endloop.
+
+*               transfer result - dynamically typed and moved to prevent misfield association - could dump if se24 tested without a concrete local data type specified
+                move-corresponding &lt;fs_line&gt; to &lt;fs_rline&gt;.
+
+*               first field group -&gt; append
+                if lv_fgroup eq 1.
+                  append &lt;fs_rline&gt; to e_table.
+*               get line index &amp; map new fields
+                else.
+
+                  loop at lt_rfcfield into ls_rfcfield.
+*                 transfer result - dynamically typed and moved to prevent misfield association - could dump if se24 tested without a concrete local data type specified
+                    modify e_table index lv_databix from &lt;fs_rline&gt; transporting (ls_rfcfield-fieldname).
+                    clear: ls_rfcfield.
+                  endloop.
+
+                endif.
+
+                clear: ls_data.
+              endloop.
+
+              refresh: lt_rfcfield.
+
+              if lv_tabix ne lv_tot.
+                lv_len = ls_field-length.
+                clear: ls_field-length.
+                append ls_field to lt_rfcfield.
+              endif.
+
+            enddo.
+
+          endif.
+
+          refresh: lt_data.
+          clear: ls_field.
+        endloop.
+
+      catch cx_sy_assign_cast_illegal_cast
+            cx_sy_assign_cast_unknown_type
+            cx_sy_assign_out_of_range.
+
+        raise exception type zcx_dyn_remote
+          exporting
+            textid = zcx_dyn_remote=&gt;assign_failed.
+
+      catch cx_parameter_invalid_range into lx_pir.
+
+        raise exception lx_pir.
+
+    endtry.
 
   endmethod.</source>
   </method>
@@ -3430,6 +3551,8 @@ define _srq_move-mapping.
 
 * &amp;1: structure from
 * &amp;2: structure to
+* &amp;3: field from
+* &amp;4: field to
 
 * sy-subrc set to 8 if error occurred
 
@@ -3894,6 +4017,8 @@ define _srq_move-mapping.
 
 * &amp;1: structure from
 * &amp;2: structure to
+* &amp;3: field from
+* &amp;4: field to
 
 * sy-subrc set to 8 if error occurred
 
