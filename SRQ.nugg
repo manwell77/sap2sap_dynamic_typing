@@ -119,10 +119,11 @@
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="BUILD_DATA" SCONAME="E_STRUCDATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="DATA"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="BUILD_DATA" SCONAME="E_TABLEDATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="3" TYPE="DATA"/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="BUILD_DATA" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="1 "/>
-   <source>method BUILD_DATA.
+   <source>method build_data.
 
   data: lo_abapstrucdescr type ref to cl_abap_structdescr,
-        lo_abaptabledescr type ref to cl_abap_tabledescr.
+        lo_abaptabledescr type ref to cl_abap_tabledescr,
+        lx_root           type ref to cx_root.
 
   try.
 
@@ -136,15 +137,16 @@
         create data: e_tabledata type handle lo_abaptabledescr.
       endif.
 
-    catch cx_sy_create_data_error.
+    catch cx_parameter_invalid_range cx_sy_create_data_error cx_sy_struct_creation cx_sy_table_creation into lx_root.
 
       raise exception type zcx_dyn_remote_type_builder
         exporting
-          textid = zcx_dyn_remote_type_builder=&gt;data_creation.
+          textid   = zcx_dyn_remote_type_builder=&gt;data_creation
+          previous = lx_root.
 
   endtry.
 
-  endmethod.</source>
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_ELEM_TYPE" VERSION="1" LANGU="E" DESCRIPT="Create Data Element Type" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_ELEM_TYPE" SCONAME="I_RFCDEST" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
@@ -318,8 +320,9 @@
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="I_STRUCT" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_STRUCTDESCR"/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="1 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Strukturtyps" MTDTYPE="0" EDITORDER="2 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="2 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Strukturtyps" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPE" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="4 "/>
    <source>method create_struct_type.
 
     data: lt_comp   type abap_component_tab,
@@ -328,7 +331,8 @@
           lv_ownrfc type rfcdest.
 
     data: lx_parameter_invalid_range type ref to cx_parameter_invalid_range,
-          lx_sy_struct_creation      type ref to cx_sy_struct_creation.
+          lx_sy_struct_creation      type ref to cx_sy_struct_creation,
+          lx_sy_table_creation       type ref to cx_sy_table_creation.
 
     try.
 
@@ -388,6 +392,10 @@
 
         raise exception lx_sy_struct_creation.
 
+      catch cx_sy_table_creation into lx_sy_table_creation.
+
+        raise exception lx_sy_table_creation.
+
     endtry.
 
   endmethod.</source>
@@ -398,51 +406,60 @@
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="STRUCT_TY_DESCR_COLLECTION" VERSION="1" LANGU="E" DESCRIPT="Structure Descriptor Collection" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="ZCL_STRUCTDESCR_COLLECTION"/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="1 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter with Invalid Range" MTDTYPE="0" EDITORDER="2 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Strukturtyps" MTDTYPE="0" EDITORDER="3 "/>
-   <source>method CREATE_STRUCT_TYPES.
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_STRUCT_TYPES" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Strukturtyps" MTDTYPE="0" EDITORDER="4 "/>
+   <source>method create_struct_types.
 
-  DATA: lv_struct TYPE strukname,
-        lo_descr  TYPE REF TO cl_abap_structdescr,
-        lx_rng    TYPE REF TO cx_parameter_invalid_range,
-        lx_str    TYPE REF TO cx_sy_struct_creation.
+  data: lv_struct type strukname,
+        lo_descr  type ref to cl_abap_structdescr,
+        lx_rng    type ref to cx_parameter_invalid_range,
+        lx_str    type ref to cx_sy_struct_creation,
+        lx_tab    type ref to cx_sy_table_creation.
 
-  TRY.
+  try.
 
-      SORT struct_list.
-      DELETE ADJACENT DUPLICATES FROM struct_list COMPARING ALL FIELDS.
+      sort struct_list.
+      delete adjacent duplicates from struct_list comparing all fields.
 
-      CREATE OBJECT struct_ty_descr_collection.
+      create object struct_ty_descr_collection.
 
-      LOOP AT struct_list INTO lv_struct.
+      loop at struct_list into lv_struct.
         lo_descr = zcl_dyn_remote_type_builder=&gt;create_struct_type( i_rfcdest = rfc_dest i_struct = lv_struct ).
         struct_ty_descr_collection-&gt;add( name = lv_struct descriptor = lo_descr ).
-        CLEAR: lv_struct.
-      ENDLOOP.
+        clear: lv_struct.
+      endloop.
 
-    CATCH cx_parameter_invalid_range INTO lx_rng.
+    catch cx_parameter_invalid_range into lx_rng.
 
-      RAISE EXCEPTION lx_rng.
+      raise exception lx_rng.
 
-    CATCH cx_sy_struct_creation INTO lx_str.
+    catch cx_sy_struct_creation into lx_str.
 
-      RAISE EXCEPTION lx_str.
+      raise exception lx_str.
 
-  ENDTRY.
+    catch cx_sy_table_creation into lx_tab.
 
-  endmethod.</source>
+      raise exception lx_tab.
+
+  endtry.
+
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" VERSION="1" LANGU="E" DESCRIPT="Create Table Type" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="I_RFCDEST" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="I_STRUCT" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_TABLEDESCR"/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Tabellentyps" MTDTYPE="0" EDITORDER="1 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="1 "/>
-   <source>method CREATE_TABLE_TYPE.
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter with Invalid Range" MTDTYPE="0" EDITORDER="1 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Tabellentyps" MTDTYPE="0" EDITORDER="2 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when creating a structure description" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPE" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="4 "/>
+   <source>method create_table_type.
 
   data: lo_ts type ref to cl_abap_structdescr.
 
   data: lx_parameter_invalid_range type ref to cx_parameter_invalid_range,
-        lx_sy_struct_creation      type ref to cx_sy_struct_creation.
+        lx_sy_struct_creation      type ref to cx_sy_struct_creation,
+        lx_sy_table_creation       type ref to cx_sy_table_creation.
 
   try.
 
@@ -458,9 +475,13 @@
 
       raise exception lx_sy_struct_creation.
 
+    catch cx_sy_table_creation into lx_sy_table_creation.
+
+      raise exception lx_sy_table_creation.
+
   endtry.
 
-  endmethod.</source>
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" VERSION="1" LANGU="E" DESCRIPT="Build Data Element Descriptor Types" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" SCONAME="RFC_DEST" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
@@ -469,174 +490,228 @@
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="1 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter with Invalid Range" MTDTYPE="0" EDITORDER="2 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Ausnahme beim Erzeugen eines Strukturtyps" MTDTYPE="0" EDITORDER="3 "/>
-   <source>method CREATE_TABLE_TYPES.
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="CREATE_TABLE_TYPES" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="4 "/>
+   <source>method create_table_types.
 
-  DATA: lv_struct TYPE strukname,
-        lo_descr  TYPE REF TO cl_abap_tabledescr,
-        lx_rng    TYPE REF TO cx_parameter_invalid_range,
-        lx_str    TYPE REF TO cx_sy_struct_creation.
+  data: lv_struct type strukname,
+        lo_descr  type ref to cl_abap_tabledescr,
+        lx_rng    type ref to cx_parameter_invalid_range,
+        lx_str    type ref to cx_sy_struct_creation,
+        lx_tcr    type ref to cx_sy_table_creation.
 
-  TRY.
+  try.
 
-      SORT struct_list.
-      DELETE ADJACENT DUPLICATES FROM struct_list COMPARING ALL FIELDS.
+      sort struct_list.
+      delete adjacent duplicates from struct_list comparing all fields.
 
-      CREATE OBJECT table_ty_descr_collection.
+      create object table_ty_descr_collection.
 
-      LOOP AT struct_list INTO lv_struct.
+      loop at struct_list into lv_struct.
         lo_descr = zcl_dyn_remote_type_builder=&gt;create_table_type( i_rfcdest = rfc_dest i_struct = lv_struct ).
         table_ty_descr_collection-&gt;add( name = lv_struct descriptor = lo_descr ).
-        CLEAR: lv_struct.
-      ENDLOOP.
+        clear: lv_struct.
+      endloop.
 
-    CATCH cx_parameter_invalid_range INTO lx_rng.
+    catch cx_parameter_invalid_range into lx_rng.
 
-      RAISE EXCEPTION lx_rng.
+      raise exception lx_rng.
 
-    CATCH cx_sy_struct_creation INTO lx_str.
+    catch cx_sy_struct_creation into lx_str.
 
-      RAISE EXCEPTION lx_str.
+      raise exception lx_str.
 
-  ENDTRY.
+    catch cx_sy_table_creation into lx_tcr.
 
-  endmethod.</source>
+      raise exception lx_tcr.
+
+  endtry.
+
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" VERSION="1" LANGU="E" DESCRIPT="Prepare Components" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="I_RFCDEST" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="I_STRUCT" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="ABAP_COMPONENT_TAB"/>
    <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="1 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="2 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when creating a structure description" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_COMPONENTS" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" MTDTYPE="0" EDITORDER="4 "/>
    <source>method get_components.
 
 * data declaration
-    data: lo_elem      type ref to cl_abap_elemdescr.
+  data: lo_elem      type ref to cl_abap_elemdescr,
+        lo_struct    type ref to cl_abap_structdescr,
+        lo_table     type ref to cl_abap_tabledescr.
 
-    data: lt_fields    type standard table of dfies,
-          ls_comp      type abap_componentdescr,
-          ls_dfies     type dfies,
-          ls_tmp_dfies type dfies,
-          ls_x030l     type x030l,
-          lv_intlen    type i,
-          lv_decimals  type i,
-          lv_off       type i,
-          lv_count     type numc3.
+  data: lt_fields    type standard table of dfies,
+        lt_lines     type ddtypelist,
+        ls_line      type ddtypedesc,
+        ls_lfield    type dfies,
+        ls_comp      type abap_componentdescr,
+        ls_dfies     type dfies,
+        ls_tmp_dfies type dfies,
+        ls_x030l     type x030l,
+        lv_intlen    type i,
+        lv_decimals  type i,
+        lv_off       type i,
+        lv_count     type numc3.
 
-    data: lx_parameter_invalid_range type ref to cx_parameter_invalid_range.
+  data: lx_parameter_invalid_range type ref to cx_parameter_invalid_range,
+        lx_struc_creation          type ref to cx_sy_struct_creation,
+        lx_table_creation          type ref to cx_sy_table_creation.
 
-*   rfc destination check
-    if not i_rfcdest is initial.
+* rfc destination check
+  if not i_rfcdest is initial.
 
-      call function &apos;RFC_CHECK_DESTINATION&apos;
-        exporting
-          mydest                        = i_rfcdest
-          mytype                        = zcl_dyn_remote_type_builder=&gt;rfctype3
-        exceptions
-          empty_destination             = 1
-          invalid_logical_destination   = 2
-          destination_with_special_char = 3
-          internal_destination_id       = 4
-          empty_rfctype                 = 5
-          others                        = 6.
-
-      if sy-subrc ne 0.
-
-        raise exception type zcx_dyn_remote_type_builder
-          exporting
-            textid  = zcx_dyn_remote_type_builder=&gt;rfc_unreachable
-            rfcdest = i_rfcdest.
-
-      endif.
-
-    endif.
-
-*   get dictionary information from rfc destination
-    call function &apos;DDIF_FIELDINFO_GET&apos; destination i_rfcdest
+    call function &apos;RFC_CHECK_DESTINATION&apos;
       exporting
-        tabname        = i_struct
-      importing
-        x030l_wa       = ls_x030l
-      tables
-        dfies_tab      = lt_fields
+        mydest                        = i_rfcdest
+        mytype                        = zcl_dyn_remote_type_builder=&gt;rfctype3
       exceptions
-        not_found      = 1
-        internal_error = 2
-        others         = 3.
+        empty_destination             = 1
+        invalid_logical_destination   = 2
+        destination_with_special_char = 3
+        internal_destination_id       = 4
+        empty_rfctype                 = 5
+        others                        = 6.
 
     if sy-subrc ne 0.
 
       raise exception type zcx_dyn_remote_type_builder
         exporting
-          textid = zcx_dyn_remote_type_builder=&gt;no_struc
-          struct = i_struct.
+          textid  = zcx_dyn_remote_type_builder=&gt;rfc_unreachable
+          rfcdest = i_rfcdest.
 
     endif.
 
-*   component table builder
-    try.
+  endif.
 
-*       build structure field by field
-        loop at lt_fields into ls_dfies.
+* get dictionary information from rfc destination
+  call function &apos;DDIF_FIELDINFO_GET&apos; destination i_rfcdest
+    exporting
+      tabname        = i_struct
+      all_types      = &apos;X&apos;
+    importing
+      x030l_wa       = ls_x030l
+      lines_descr    = lt_lines
+    tables
+      dfies_tab      = lt_fields
+    exceptions
+      not_found      = 1
+      internal_error = 2
+      others         = 3.
 
-          case ls_dfies-inttype.
+  if sy-subrc ne 0.
 
-            when cl_abap_elemdescr=&gt;typekind_char or
-                 cl_abap_elemdescr=&gt;typekind_date or
-                 cl_abap_elemdescr=&gt;typekind_time or
-                 cl_abap_elemdescr=&gt;typekind_num.
+    raise exception type zcx_dyn_remote_type_builder
+      exporting
+        textid = zcx_dyn_remote_type_builder=&gt;no_struc
+        struct = i_struct.
 
-              lv_intlen   = ls_dfies-intlen / ls_x030l-unicodelg.
+  endif.
 
-            when others.
+* component table builder
+  try.
 
-              lv_intlen   = ls_dfies-intlen.
+*     build structure field by field (nested structures have lfieldname valued has struc-field)
+      loop at lt_fields into ls_dfies where not lfieldname cs &apos;-&apos;.
 
-          endcase.
+*       internal length determination
+        case ls_dfies-inttype.
 
-          lv_decimals = ls_dfies-decimals.
+          when cl_abap_elemdescr=&gt;typekind_char or
+               cl_abap_elemdescr=&gt;typekind_date or
+               cl_abap_elemdescr=&gt;typekind_time or
+               cl_abap_elemdescr=&gt;typekind_num.
 
-*         offset management with a dummy filed (if needed)
-          lv_off = ls_dfies-offset - ( ls_tmp_dfies-offset + ls_tmp_dfies-intlen ).
+            lv_intlen   = ls_dfies-intlen / ls_x030l-unicodelg.
 
-          if lv_off gt 0.
+          when cl_abap_elemdescr=&gt;typekind_table   or
+               cl_abap_elemdescr=&gt;typekind_struct1 or
+               cl_abap_elemdescr=&gt;typekind_struct2.
+*              do nothing -&gt; intlen doesn&apos;t matter when building elements!
 
-            lo_elem = cl_abap_elemdescr=&gt;get_x( lv_off ).
+          when others.
 
-            ls_comp-type = lo_elem.
+            lv_intlen   = ls_dfies-intlen.
 
-            add 1 to lv_count.
+        endcase.
 
-            concatenate zcl_dyn_remote_type_builder=&gt;offset &apos;_&apos; lv_count into ls_comp-name.
+*       decimals
+        lv_decimals = ls_dfies-decimals.
 
-            append ls_comp to result.
+*       offset management with a dummy fill to handle rfc return misplacement (if needed)
+        lv_off = ls_dfies-offset - ( ls_tmp_dfies-offset + ls_tmp_dfies-intlen ).
 
-            free: lo_elem.
+        if lv_off gt 0.
+*         build byte element
+          lo_elem = cl_abap_elemdescr=&gt;get_x( lv_off ).
 
-          endif.
-
-*         field management by means of internal abap types
-          ls_comp-name = ls_dfies-fieldname.
-
-*         build element
-          lo_elem = zcl_dyn_remote_type_builder=&gt;get_elemdescr( i_inttype = ls_dfies-inttype i_intlen = lv_intlen i_decimals = lv_decimals ).
-
-*         assign element
           ls_comp-type = lo_elem.
+
+          add 1 to lv_count.
+
+          concatenate zcl_dyn_remote_type_builder=&gt;offset &apos;_&apos; lv_count into ls_comp-name.
 
           append ls_comp to result.
 
-          ls_tmp_dfies = ls_dfies.
+          free: lo_elem.
 
-          clear: ls_dfies.
-        endloop.
+        endif.
 
-      catch cx_parameter_invalid_range into lx_parameter_invalid_range.
+*       field management by means of internal abap types
+        ls_comp-name = ls_dfies-fieldname.
 
-        raise exception lx_parameter_invalid_range.
+*       build element
+        case ls_dfies-inttype.
 
-    endtry.
+*         build table type
+          when cl_abap_elemdescr=&gt;typekind_table.
 
-  endmethod.</source>
+            read table lt_lines into ls_line with key typename = ls_dfies-rollname.
+            read table ls_line-fields into ls_lfield with key tabname = ls_line-typename.
+            lo_table = zcl_dyn_remote_type_builder=&gt;create_table_type( i_rfcdest = i_rfcdest i_struct = ls_lfield-rollname ).
+*           assign element
+            ls_comp-type = lo_table.
+
+*         build structure
+          when cl_abap_elemdescr=&gt;typekind_struct1 or
+               cl_abap_elemdescr=&gt;typekind_struct2.
+
+            lo_struct = zcl_dyn_remote_type_builder=&gt;create_struct_type( i_rfcdest = i_rfcdest i_struct = ls_dfies-rollname ).
+*           assign element
+            ls_comp-type = lo_struct.
+
+*         build element (also for included structures)
+          when others.
+            lo_elem = zcl_dyn_remote_type_builder=&gt;get_elemdescr( i_inttype = ls_dfies-inttype i_intlen = lv_intlen i_decimals = lv_decimals ).
+*           assign element
+            ls_comp-type = lo_elem.
+
+        endcase.
+
+        append ls_comp to result.
+
+        ls_tmp_dfies = ls_dfies.
+
+        clear: ls_dfies.
+      endloop.
+
+    catch cx_parameter_invalid_range into lx_parameter_invalid_range.
+
+      raise exception lx_parameter_invalid_range.
+
+    catch cx_sy_struct_creation into lx_struc_creation.
+
+      raise exception lx_struc_creation.
+
+    catch cx_sy_table_creation into lx_table_creation.
+
+      raise exception lx_table_creation.
+
+  endtry.
+
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_ELEMDESCR" VERSION="1" LANGU="E" DESCRIPT="Get Element Descriptor" EXPOSURE="2" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE_TYPE_BUILDER" CMPNAME="GET_ELEMDESCR" SCONAME="I_INTTYPE" VERSION="1" LANGU="E" DESCRIPT="ABAP data type (C,D,N,...)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="INTTYPE"/>
@@ -1055,7 +1130,9 @@ type-pools: abap.</localTypes>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_STRUC_DATA" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_STRUC_DATA" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="2 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_STRUC_DATA" SCONAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" DESCRIPT="Dynamic Remote Exception" MTDTYPE="0" EDITORDER="3 "/>
-   <source>method GET_REMOTE_STRUC_DATA.
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_STRUC_DATA" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when creating a structure description" MTDTYPE="0" EDITORDER="4 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_STRUC_DATA" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="5 "/>
+   <source>method get_remote_struc_data.
 
   data: lx_pir type ref to cx_parameter_invalid_range.
 
@@ -1069,7 +1146,10 @@ type-pools: abap.</localTypes>
         lv_len      type i,
         lv_tot      type i.
 
-  data: lo_strucdata type ref to data.
+  data: lo_strucdata type ref to data,
+        lx_scr       type ref to cx_sy_struct_creation,
+        lx_tcr       type ref to cx_sy_table_creation,
+        lx_root      type ref to cx_root.
 
   field-symbols: &lt;fs_line&gt;   type any,
                  &lt;fs_efield&gt; type any,
@@ -1121,10 +1201,10 @@ type-pools: abap.</localTypes>
             if sy-subrc ne 0.
 
               raise exception type zcx_dyn_remote
-                 exporting
-                   textid          = zcx_dyn_remote=&gt;no_field
-                   table           = i_table
-                   field           = ls_field-fieldname.
+                exporting
+                  textid = zcx_dyn_remote=&gt;no_field
+                  table  = i_table
+                  field  = ls_field-fieldname.
 
             endif.
 
@@ -1156,19 +1236,30 @@ type-pools: abap.</localTypes>
 
     catch cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
-          cx_sy_assign_out_of_range.
+          cx_sy_assign_out_of_range
+
+          into lx_root.
 
       raise exception type zcx_dyn_remote
         exporting
-          textid = zcx_dyn_remote=&gt;assign_failed.
+          textid   = zcx_dyn_remote=&gt;assign_failed
+          previous = lx_root.
 
     catch cx_parameter_invalid_range into lx_pir.
 
       raise exception lx_pir.
 
+    catch cx_sy_struct_creation into lx_scr.
+
+      raise exception lx_scr.
+
+    catch cx_sy_table_creation into lx_tcr.
+
+      raise exception lx_tcr.
+
   endtry.
 
-  endmethod.</source>
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" VERSION="1" LANGU="E" DESCRIPT="Get Remote Table Data (Select)" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="I_RFC_DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST"/>
@@ -1179,6 +1270,8 @@ type-pools: abap.</localTypes>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="2 "/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="ZCX_DYN_REMOTE" VERSION="1" LANGU="E" DESCRIPT="Dynamic Remote Exception" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="4 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_DATA" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when creating a structure description" MTDTYPE="0" EDITORDER="5 "/>
    <source>method get_remote_table_data.
 
     data: lx_pir type ref to cx_parameter_invalid_range.
@@ -1197,7 +1290,10 @@ type-pools: abap.</localTypes>
           lv_tot      type i.
 
     data: lo_strucdata  type ref to data,
-          lo_rstrucdata type ref to data.
+          lo_rstrucdata type ref to data,
+          lx_scr        type ref to cx_sy_struct_creation,
+          lx_tcr        type ref to cx_sy_table_creation,
+          lx_root       type ref to cx_root.
 
     field-symbols: &lt;fs_line&gt;  type any,
                    &lt;fs_rline&gt; type any,
@@ -1319,15 +1415,26 @@ type-pools: abap.</localTypes>
 
       catch cx_sy_assign_cast_illegal_cast
             cx_sy_assign_cast_unknown_type
-            cx_sy_assign_out_of_range.
+            cx_sy_assign_out_of_range
+
+            into lx_root.
 
         raise exception type zcx_dyn_remote
           exporting
-            textid = zcx_dyn_remote=&gt;assign_failed.
+            textid   = zcx_dyn_remote=&gt;assign_failed
+            previous = lx_root.
 
       catch cx_parameter_invalid_range into lx_pir.
 
         raise exception lx_pir.
+
+    catch cx_sy_struct_creation into lx_scr.
+
+      raise exception lx_scr.
+
+    catch cx_sy_table_creation into lx_tcr.
+
+      raise exception lx_tcr.
 
     endtry.
 
@@ -1338,10 +1445,14 @@ type-pools: abap.</localTypes>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="I_TABLE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME"/>
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="R_FIELD" VERSION="1" LANGU="E" DESCRIPT="Table type for rfc_db_fld" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="ZRFC_DB_FLD_T"/>
    <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="CX_PARAMETER_INVALID_RANGE" VERSION="1" LANGU="E" DESCRIPT="Parameter mit ungültigem Wertebereich" MTDTYPE="0" EDITORDER="1 "/>
-   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="2 "/>
-   <source>method GET_REMOTE_TABLE_FIELDS.
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="CX_SY_STRUCT_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when creating a structure description" MTDTYPE="0" EDITORDER="2 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="CX_SY_TABLE_CREATION" VERSION="1" LANGU="E" DESCRIPT="Exception when Creating a Table Type" MTDTYPE="0" EDITORDER="3 "/>
+   <exception CLSNAME="ZCL_DYN_REMOTE" CMPNAME="GET_REMOTE_TABLE_FIELDS" SCONAME="ZCX_DYN_REMOTE_TYPE_BUILDER" VERSION="1" LANGU="E" DESCRIPT="Dynamic Type Builder Exception" MTDTYPE="0" EDITORDER="4 "/>
+   <source>method get_remote_table_fields.
 
-  data: lx_pir type ref to cx_parameter_invalid_range.
+  data: lx_pir type ref to cx_parameter_invalid_range,
+        lx_tcr type ref to cx_sy_table_creation,
+        lx_scr type ref to cx_sy_struct_creation.
 
   data: lt_comp  type abap_component_tab,
         ls_comp  type abap_componentdescr,
@@ -1368,9 +1479,17 @@ type-pools: abap.</localTypes>
 
       raise exception lx_pir.
 
+    catch cx_sy_table_creation into lx_tcr.
+
+      raise exception lx_tcr.
+
+    catch cx_sy_struct_creation into lx_scr.
+
+      raise exception lx_scr.
+
   endtry.
 
-  endmethod.</source>
+endmethod.</source>
   </method>
   <method CLSNAME="ZCL_DYN_REMOTE" CMPNAME="RFC_READ_TABLE" VERSION="1" LANGU="E" DESCRIPT="Read Table Content By RFC" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
    <parameter CLSNAME="ZCL_DYN_REMOTE" CMPNAME="RFC_READ_TABLE" SCONAME="I_RFC_DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST"/>
@@ -2038,7 +2157,7 @@ include zsrq.</include_source>
 *************************************
 
 * globals
-##NEEDED
+##needed
 data: _lv_count  type i,
       _ls_comp1  type cl_abap_structdescr=&gt;component,
       _ls_comp2  type cl_abap_structdescr=&gt;component,
@@ -2046,17 +2165,17 @@ data: _lv_count  type i,
       _lt_comp1  type cl_abap_structdescr=&gt;component_table,
       _lt_comp2  type cl_abap_structdescr=&gt;component_table.
 
-##NEEDED
+##needed
 data: _lo_struc1 type ref to cl_abap_structdescr,
       _lo_struc2 type ref to cl_abap_structdescr.
 
-##NEEDED
+##needed
 field-symbols: &lt;_fs_field1&gt; type any,
                &lt;_fs_field2&gt; type any,
                &lt;_fs_struc&gt;  type any,
                &lt;_ft_itab&gt;   type standard table.
 
-##NEEDED
+##needed
 define _srq_build-structure.
 
 * &amp;1: rfc destination
@@ -2076,10 +2195,10 @@ define _srq_build-structure.
           e_strucdata = &amp;3.
 
       if not &amp;3 is bound.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       endif.
 
@@ -2091,7 +2210,7 @@ define _srq_build-structure.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_build-itab.
 
 * &amp;1: rfc destination
@@ -2111,10 +2230,10 @@ define _srq_build-itab.
           e_tabledata = &amp;3.
 
       if not &amp;3 is bound.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       endif.
 
@@ -2126,7 +2245,7 @@ define _srq_build-itab.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_select-single.
 
 * &amp;1: rfc destination
@@ -2153,7 +2272,7 @@ define _srq_select-single.
       assign &amp;4-&gt;* to &lt;_fs_struc&gt;.
 
       if not &lt;_fs_struc&gt; is assigned.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
 
@@ -2167,12 +2286,12 @@ define _srq_select-single.
             e_struc           = &lt;_fs_struc&gt;.
 
         if not &lt;_fs_struc&gt; is initial.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 0.
-          ##WRITE_OK
+          ##write_ok
           sy-dbcnt = 1.
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 4.
         endif.
 
@@ -2180,19 +2299,21 @@ define _srq_select-single.
 
     catch zcx_dyn_remote_type_builder
           zcx_dyn_remote
+          cx_sy_struct_creation
+          cx_sy_table_creation
           cx_parameter_invalid_range
           cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_select.
 
 * &amp;1: rfc destination
@@ -2219,7 +2340,7 @@ define _srq_select.
       assign &amp;4-&gt;* to &lt;_ft_itab&gt;.
 
       if not &lt;_ft_itab&gt; is assigned.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
 
@@ -2233,12 +2354,12 @@ define _srq_select.
             e_table           = &lt;_ft_itab&gt;.
 
         if not &lt;_ft_itab&gt; is initial.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 0.
-          ##WRITE_OK
+          ##write_ok
           sy-dbcnt = lines( &lt;_ft_itab&gt; ).
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 4.
         endif.
 
@@ -2246,19 +2367,21 @@ define _srq_select.
 
     catch zcx_dyn_remote_type_builder
           zcx_dyn_remote
+          cx_sy_struct_creation
+          cx_sy_table_creation
           cx_parameter_invalid_range
           cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_get-field.
 
 * &amp;1: structure
@@ -2279,7 +2402,7 @@ define _srq_get-field.
 
     catch zcx_dyn_remote.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -2288,7 +2411,7 @@ define _srq_get-field.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_set-field.
 
 * &amp;1: structure
@@ -2309,7 +2432,7 @@ define _srq_set-field.
 
     catch zcx_dyn_remote.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -2318,7 +2441,7 @@ define _srq_set-field.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_move-corresponding.
 
 * &amp;1: structure from
@@ -2366,30 +2489,30 @@ define _srq_move-corresponding.
           &lt;_fs_field2&gt; = &lt;_fs_field1&gt;.
           add 1 to _lv_count.
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 8.
           exit.
         endif.
 
       endloop.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 0.
-      ##WRITE_OK
+      ##write_ok
       sy-dbcnt = _lv_count.
 
     catch cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_move-mapping.
 
 * &amp;1: structure from
@@ -2416,10 +2539,10 @@ define _srq_move-mapping.
 
       if &lt;_fs_field2&gt; is assigned and &lt;_fs_field1&gt; is assigned.
         &lt;_fs_field2&gt; = &lt;_fs_field1&gt;.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       endif.
 
@@ -2427,7 +2550,7 @@ define _srq_move-mapping.
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -2642,7 +2765,7 @@ end-of-definition.</include_source>
 *************************************
 
 * globals
-##NEEDED
+##needed
 data: _lv_count  type i,
       _ls_comp1  type cl_abap_structdescr=&gt;component,
       _ls_comp2  type cl_abap_structdescr=&gt;component,
@@ -2650,17 +2773,17 @@ data: _lv_count  type i,
       _lt_comp1  type cl_abap_structdescr=&gt;component_table,
       _lt_comp2  type cl_abap_structdescr=&gt;component_table.
 
-##NEEDED
+##needed
 data: _lo_struc1 type ref to cl_abap_structdescr,
       _lo_struc2 type ref to cl_abap_structdescr.
 
-##NEEDED
+##needed
 field-symbols: &lt;_fs_field1&gt; type any,
                &lt;_fs_field2&gt; type any,
                &lt;_fs_struc&gt;  type any,
                &lt;_ft_itab&gt;   type standard table.
 
-##NEEDED
+##needed
 define _srq_build-structure.
 
 * &amp;1: rfc destination
@@ -2680,10 +2803,10 @@ define _srq_build-structure.
           e_strucdata = &amp;3.
 
       if not &amp;3 is bound.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       endif.
 
@@ -2695,7 +2818,7 @@ define _srq_build-structure.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_build-itab.
 
 * &amp;1: rfc destination
@@ -2715,10 +2838,10 @@ define _srq_build-itab.
           e_tabledata = &amp;3.
 
       if not &amp;3 is bound.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       endif.
 
@@ -2730,7 +2853,7 @@ define _srq_build-itab.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_select-single.
 
 * &amp;1: rfc destination
@@ -2757,7 +2880,7 @@ define _srq_select-single.
       assign &amp;4-&gt;* to &lt;_fs_struc&gt;.
 
       if not &lt;_fs_struc&gt; is assigned.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
 
@@ -2771,12 +2894,12 @@ define _srq_select-single.
             e_struc           = &lt;_fs_struc&gt;.
 
         if not &lt;_fs_struc&gt; is initial.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 0.
-          ##WRITE_OK
+          ##write_ok
           sy-dbcnt = 1.
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 4.
         endif.
 
@@ -2784,19 +2907,21 @@ define _srq_select-single.
 
     catch zcx_dyn_remote_type_builder
           zcx_dyn_remote
+          cx_sy_struct_creation
+          cx_sy_table_creation
           cx_parameter_invalid_range
           cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_select.
 
 * &amp;1: rfc destination
@@ -2823,7 +2948,7 @@ define _srq_select.
       assign &amp;4-&gt;* to &lt;_ft_itab&gt;.
 
       if not &lt;_ft_itab&gt; is assigned.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       else.
 
@@ -2837,12 +2962,12 @@ define _srq_select.
             e_table           = &lt;_ft_itab&gt;.
 
         if not &lt;_ft_itab&gt; is initial.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 0.
-          ##WRITE_OK
+          ##write_ok
           sy-dbcnt = lines( &lt;_ft_itab&gt; ).
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 4.
         endif.
 
@@ -2850,19 +2975,21 @@ define _srq_select.
 
     catch zcx_dyn_remote_type_builder
           zcx_dyn_remote
+          cx_sy_struct_creation
+          cx_sy_table_creation
           cx_parameter_invalid_range
           cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_get-field.
 
 * &amp;1: structure
@@ -2883,7 +3010,7 @@ define _srq_get-field.
 
     catch zcx_dyn_remote.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -2892,7 +3019,7 @@ define _srq_get-field.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_set-field.
 
 * &amp;1: structure
@@ -2913,7 +3040,7 @@ define _srq_set-field.
 
     catch zcx_dyn_remote.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -2922,7 +3049,7 @@ define _srq_set-field.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_move-corresponding.
 
 * &amp;1: structure from
@@ -2970,30 +3097,30 @@ define _srq_move-corresponding.
           &lt;_fs_field2&gt; = &lt;_fs_field1&gt;.
           add 1 to _lv_count.
         else.
-          ##WRITE_OK
+          ##write_ok
           sy-subrc = 8.
           exit.
         endif.
 
       endloop.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 0.
-      ##WRITE_OK
+      ##write_ok
       sy-dbcnt = _lv_count.
 
     catch cx_sy_assign_cast_illegal_cast
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
 
 end-of-definition.
 
-##NEEDED
+##needed
 define _srq_move-mapping.
 
 * &amp;1: structure from
@@ -3020,10 +3147,10 @@ define _srq_move-mapping.
 
       if &lt;_fs_field2&gt; is assigned and &lt;_fs_field1&gt; is assigned.
         &lt;_fs_field2&gt; = &lt;_fs_field1&gt;.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 0.
       else.
-        ##WRITE_OK
+        ##write_ok
         sy-subrc = 8.
       endif.
 
@@ -3031,7 +3158,7 @@ define _srq_move-mapping.
           cx_sy_assign_cast_unknown_type
           cx_sy_assign_out_of_range.
 
-      ##WRITE_OK
+      ##write_ok
       sy-subrc = 8.
 
   endtry.
@@ -3292,43 +3419,43 @@ start-of-selection.
 
   type-pools: slis.
 
-  ##NEEDED
+  ##needed
   constants: gc_30 type i value 30.
 
 * declare field symbols of type any or standard table
-  ##NEEDED
+  ##needed
   field-symbols: &lt;fs_ts_address&gt; type any,
                  &lt;fs_tt_profile&gt; type standard table,
                  &lt;fs_tt_return&gt;  type standard table.
 
 * declare line field symbols fore managing data
-  ##NEEDED
+  ##needed
   field-symbols: &lt;fs_line&gt;       type any,
                  &lt;fs_any&gt;        type any.
 
 * declare structure and type table descriptor
-  ##NEEDED
+  ##needed
   data: lo_address_ts type ref to cl_abap_structdescr,
         lo_profile_tt type ref to cl_abap_tabledescr,
         lo_return_tt  type ref to cl_abap_tabledescr.
 
 * declare generic data type ref
-  ##NEEDED
+  ##needed
   data: lo_address_wa type ref to data,
         lo_profile_it type ref to data,
         lo_return_it  type ref to data.
 
 * declare for getting components when parsing result
-  ##NEEDED
+  ##needed
   data: lt_comp type abap_component_tab,
         ls_comp type abap_componentdescr.
 
 * for output writing
-  ##NEEDED
+  ##needed
   data: lv_text type string.
 
 * for alv grid
-  ##NEEDED
+  ##needed
   data: lt_fcat   type slis_t_fieldcat_alv,
         ls_fcat   type slis_fieldcat_alv,
         ls_layout type slis_layout_alv.
@@ -3340,7 +3467,7 @@ start-of-selection.
       lo_profile_tt = zcl_dyn_remote_type_builder=&gt;create_table_type( i_rfcdest = p_dest i_struct = &apos;BAPIPROF&apos; ).
       lo_return_tt  = zcl_dyn_remote_type_builder=&gt;create_table_type( i_rfcdest = p_dest i_struct = &apos;BAPIRET2&apos; ).
 
-    catch cx_parameter_invalid_range cx_sy_struct_creation .
+    catch zcx_dyn_remote_type_builder cx_parameter_invalid_range cx_sy_struct_creation cx_sy_table_creation.
 
       message text-005 type &apos;E&apos;.
 
