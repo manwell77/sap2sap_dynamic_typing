@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nugget name="ZSRQL">
+ <CLAS CLSNAME="ZCL_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="Query" CATEGORY="00" EXPOSURE="0" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZCL_SRQLQUERY" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" EXPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="C_QUERYABLE_FIELD_MAX_LENGTH" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="512" ATTEXPVIRT="0" TYPTYPE="1" TYPE="I" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="C_QUERY_LINE_RFC_LIMIT" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="10 " ATTDECLTYP="2" ATTVALUE="72" ATTEXPVIRT="0" TYPTYPE="1" TYPE="I" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="RFCDEST" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="RESULT" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="6 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="DATA" SRCROW1="8 " SRCCOLUMN1="7 " SRCROW2="8 " SRCCOLUMN2="27 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="RESULT_DATE" VERSION="1" LANGU="E" DESCRIPT="Current Date of Application Server" EXPOSURE="0" STATE="1" EDITORDER="7 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SYDATUM" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="RESULT_FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" EXPOSURE="0" STATE="1" EDITORDER="5 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="RESULT_TIME" VERSION="1" LANGU="E" DESCRIPT="Current Time of Application Server" EXPOSURE="0" STATE="1" EDITORDER="8 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SYUZEIT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="TABLE" VERSION="1" LANGU="E" DESCRIPT="Table Name" EXPOSURE="0" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="TABNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="TABLE_FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table Type for Structure DFIES" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="DFIES_TAB" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLQUERY" CMPNAME="WHERE" VERSION="1" LANGU="E" DESCRIPT="Query as Table" EXPOSURE="0" STATE="1" EDITORDER="4 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLRFCDBOPT_TT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="BUILD_WHERE" VERSION="1" LANGU="E" DESCRIPT="Query Builder From String" EXPOSURE="0" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="BUILD_WHERE" SCONAME="INPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <source>method BUILD_WHERE.
+
+  do.
+*   last.
+    if strlen( input ) le zcl_srqlquery=&gt;c_query_line_rfc_limit. append input to me-&gt;where. exit. endif.
+*   intermediate
+    append input(zcl_srqlquery=&gt;c_query_line_rfc_limit) to me-&gt;where. input = input+zcl_srqlquery=&gt;c_query_line_rfc_limit.
+  enddo.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="Object Builder" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="CONSTRUCTOR" SCONAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="CONSTRUCTOR" SCONAME="TABLE" VERSION="1" LANGU="E" DESCRIPT="Table Name" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TABNAME"/>
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="CONSTRUCTOR" SCONAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" MTDTYPE="2" EDITORDER="1 "/>
+   <source>method constructor.
+
+* get table fields (destination already checked in new mwthod)
+  if not destination is initial.
+    call function &apos;DDIF_FIELDINFO_GET&apos; destination destination exporting tabname = table tables dfies_tab = me-&gt;table_fields exceptions others = 1.
+  else.
+    call function &apos;DDIF_FIELDINFO_GET&apos; exporting tabname = table tables dfies_tab = me-&gt;table_fields exceptions others = 1.
+  endif.
+
+* error handling
+  if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_table. endif.
+
+* initialize attributes
+  me-&gt;destination = destination.
+  me-&gt;table = table.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="DOULE_HYPHEN" VERSION="1" LANGU="E" DESCRIPT="Double Hypen" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="DOULE_HYPHEN" SCONAME="INPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TEXT1024"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="DOULE_HYPHEN" SCONAME="OUTPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="TEXT1024"/>
+   <source>method doule_hyphen.
+
+  field-symbols: &lt;lv_str&gt; type text1024.
+
+  output = input.
+
+  assign output to &lt;lv_str&gt;.
+
+  while &lt;lv_str&gt; ca &apos;&apos;&apos;&apos;.
+    assign &lt;lv_str&gt;+sy-fdpos(*) to &lt;lv_str&gt;.
+    shift &lt;lv_str&gt; right by 1 places.
+    &lt;lv_str&gt;(1) = &apos;&apos;&apos;&apos;.
+    assign &lt;lv_str&gt;+2(*) to &lt;lv_str&gt;.
+  endwhile.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXECUTE" VERSION="1" LANGU="E" DESCRIPT="Execute Query" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXECUTE" SCONAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXECUTE" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="2 "/>
+   <source>method execute.
+
+* object declaration
+  data: lx_root  type ref to cx_root,
+        lo_tyds  type ref to cl_abap_typedescr,
+        lo_stds  type ref to cl_abap_structdescr,
+        lo_ttds  type ref to cl_abap_tabledescr,
+        lo_struc type ref to data.
+
+* data declaration
+  data: lv_field  type fieldname,
+        lv_tabix  type sytabix,
+        lv_tabiy  type sytabix,
+        lv_fields type string,
+        lv_group  type i,
+        lv_len    type i,
+        lv_comp   type fieldname,
+        lv_where  type string,
+        lv_dest   type string,
+        ls_field  type dfies,
+        ls_fld    type rfc_db_fld,
+        ls_data   type tab512,
+        ls_comp   type abap_componentdescr,
+        lt_comp   type abap_component_tab,
+        lt_data   type standard table of tab512,
+        lt_field  type standard table of dfies,
+        lt_fld    type standard table of rfc_db_fld.
+
+* pointer declaration
+  field-symbols: &lt;lt_table&gt;  type standard table,
+                 &lt;ls_line1&gt;  type any,
+                 &lt;ls_line2&gt;  type any,
+                 &lt;lv_field1&gt; type any,
+                 &lt;lv_field2&gt; type any.
+
+  if me-&gt;destination is initial.
+*   build depending on asked fields
+    if not me-&gt;result_fields is initial.
+*     get descriptor
+      cl_abap_structdescr=&gt;describe_by_name( exporting p_name = me-&gt;table receiving p_descr_ref = lo_tyds exceptions type_not_found = 1 others = 2 ).
+      if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+*     get components
+      try.
+        lo_stds ?= lo_tyds. lt_comp = lo_stds-&gt;get_components( ). lt_comp = lo_stds-&gt;get_components( ).
+      catch cx_sy_move_cast_error into lx_root.
+        raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution previous = lx_root table = me-&gt;table.
+      endtry.
+*     purge undesired components
+      loop at lt_comp into ls_comp.
+        lv_tabix = sy-tabix.
+        lv_comp = ls_comp-name. read table me-&gt;result_fields into lv_field with key table_line = lv_comp.
+        if sy-subrc ne 0. delete lt_comp index lv_tabix. endif.
+      endloop.
+*     build table type
+      try.
+        free: lo_stds. lo_stds = cl_abap_structdescr=&gt;create( lt_comp ).
+        lo_ttds = cl_abap_tabledescr=&gt;create( p_line_type = lo_stds p_table_kind = cl_abap_tabledescr=&gt;tablekind_std p_unique = abap_false ).
+      catch cx_sy_table_creation cx_sy_struct_creation into lx_root.
+        raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution previous = lx_root table = me-&gt;table.
+      endtry.
+*     build data object
+      create data me-&gt;result type handle lo_ttds.
+    else.
+*     build data object
+      create data me-&gt;result type standard table of (me-&gt;table). if sy-subrc ne 0. free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+    endif.
+*   to fs for easy handling
+    assign me-&gt;result-&gt;* to &lt;lt_table&gt;. if sy-subrc ne 0. free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+*   get where clause as string
+    lv_where = me-&gt;get_where_as_string( ).
+*   fields of interest
+    if not me-&gt;result_fields is initial. loop at me-&gt;result_fields into lv_field. lv_fields = |{ lv_fields } { lv_field }|.endloop. condense lv_fields. else. lv_fields = &apos;*&apos;. endif.
+*   perform statement
+    if not lv_where is initial. select (lv_fields) from (me-&gt;table) into corresponding fields of table &lt;lt_table&gt; where (lv_where). else. select (lv_fields) from (me-&gt;table) into corresponding fields of table &lt;lt_table&gt;. endif.
+  else.
+*   check destination
+    lv_dest = destination.
+    call function &apos;RFC_VERIFY_DESTINATION&apos; exporting destination = lv_dest exceptions others = 1.
+    if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_rfc. endif.
+*   build data object
+    lo_stds ?= zcl_srqltype=&gt;new( destination = me-&gt;destination typename = me-&gt;table typekind = zif_srqltypekind=&gt;structure typefields = me-&gt;result_fields )-&gt;get_descriptor( ).
+    lo_ttds = cl_abap_tabledescr=&gt;create( p_line_type = lo_stds p_table_kind = cl_abap_tabledescr=&gt;tablekind_std p_unique = abap_false ).
+    create data: lo_struc type handle lo_stds, me-&gt;result type handle lo_ttds.
+*   check data object creation
+    if not ( lo_struc is bound and me-&gt;result is bound ). raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+*   to symbols for handling
+    assign: lo_struc-&gt;* to &lt;ls_line1&gt;, me-&gt;result-&gt;* to &lt;lt_table&gt;. if not ( &lt;ls_line1&gt; is assigned and &lt;lt_table&gt; is assigned ). raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+*   prepare rfc field list
+    loop at me-&gt;result_fields into lv_field.
+      read table me-&gt;table_fields into ls_field with key fieldname = lv_field. if sy-subrc ne 0. free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+      append ls_field to lt_field.
+    endloop.
+*   nothing -&gt; all
+    if lt_field is initial. append lines of me-&gt;table_fields to lt_field. endif.
+*   prepare fields
+    loop at lt_field into ls_field.
+*     get line index
+      lv_tabix = sy-tabix.
+*     get total fields length
+      lv_len = lv_len + ls_field-leng.
+*     check limit of data line in rfc_read_data
+      if lv_len le zcl_srqlquery=&gt;c_queryable_field_max_length. ls_fld-fieldname = ls_field-fieldname. append ls_fld to lt_fld. endif.
+*     single field over -&gt; skip, but mustn&apos;t happen
+      if lv_len gt zcl_srqlquery=&gt;c_queryable_field_max_length and lt_fld is initial. continue. endif.
+*     limit, over limit or last line -&gt; start getting data
+      if ( lv_len ge zcl_srqlquery=&gt;c_queryable_field_max_length and not lt_fld is initial ) or lv_tabix eq lines( lt_field ).
+*       increase field group index (nb: initialized to 0!)
+        add 1 to lv_group.
+*       clean data
+        refresh: lt_data.
+*       remote query
+        call function &apos;RFC_READ_TABLE&apos; destination me-&gt;destination exporting query_table = me-&gt;table tables options = me-&gt;where fields = lt_fld data = lt_data exceptions others = 1.
+        if sy-subrc ne 0. free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+*       next field
+        if lv_tabix ne lines( lt_field ). ls_fld-fieldname = ls_field-fieldname. append ls_fld to lt_fld. endif.
+*       map data
+        loop at lt_data into ls_data.
+*         index
+          lv_tabiy = sy-tabix.
+*         first field group already processed -&gt; record exist
+          if lv_group gt 1. read table &lt;lt_table&gt; assigning &lt;ls_line2&gt; index lv_tabiy. if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif. endif.
+*         prepare fields
+          loop at lt_fld into ls_fld.
+            if lv_group eq 1.
+              assign component ls_fld-fieldname of structure &lt;ls_line1&gt; to &lt;lv_field1&gt;. if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+              try.
+                  &lt;lv_field1&gt; = ls_data+ls_fld-offset(ls_fld-length).
+                catch cx_static_check cx_dynamic_check into lx_root.
+                  free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution previous = lx_root table = me-&gt;table.
+              endtry.
+            else.
+              assign component ls_fld-fieldname of structure &lt;ls_line2&gt; to &lt;lv_field2&gt;. if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution table = me-&gt;table. endif.
+              try.
+                  &lt;lv_field2&gt; = ls_data+ls_fld-offset(ls_fld-length).
+                catch cx_static_check cx_dynamic_check into lx_root.
+                  free me-&gt;result. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_execution previous = lx_root table = me-&gt;table.
+              endtry.
+            endif.
+          endloop.
+*         first field group -&gt; append temporary line to me-&gt;result
+          if lv_group eq 1. append &lt;ls_line1&gt; to &lt;lt_table&gt;. continue. endif.
+        endloop.
+*       prepare for next loop
+        refresh: lt_fld.
+      endif.
+    endloop.
+  endif.
+
+* set result timestamp
+  me-&gt;result_date = sy-datum.
+  me-&gt;result_time = sy-uzeit.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXPLODE_SELECT_OPTION" VERSION="1" LANGU="E" DESCRIPT="Explode Select Option" EXPOSURE="0" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXPLODE_SELECT_OPTION" SCONAME="INPUT" VERSION="1" LANGU="E" DESCRIPT="Query as Select Option" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLSOQUERY_TT"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXPLODE_SELECT_OPTION" SCONAME="ESCAPE" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="XFELD" PARVALUE="SPACE"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="EXPLODE_SELECT_OPTION" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <source>method explode_select_option.
+
+* constants
+  constants: gc_1024 type i value 1024.
+
+* declarations
+  data: ls_input      type zsrqlsoquery_s,
+        lv_concat     type string,
+        lv_last_fname type string,
+        lv_op         type string,
+        lv_last_sign  type tvarv_sign,
+        lv_low        type text1024,
+        lv_high       type text1024.
+
+* pointers
+  field-symbols: &lt;lv_str&gt; type text1024.
+
+* order
+  sort input by fieldname sign descending.
+
+  loop at input into ls_input.
+*   clean variables
+    clear: lv_concat, lv_op, lv_low, lv_high.
+*   prepare
+    if sy-tabix eq 1.
+      result = &apos;(&apos;.
+    elseif ( ls_input-fieldname eq lv_last_fname and ls_input-sign eq lv_last_sign ).
+      if ls_input-sign eq &apos;I&apos;. lv_concat = zif_srqlconjunction=&gt;or. else. lv_concat = zif_srqlconjunction=&gt;and. endif.
+    else.
+      result = |{ result } ) AND (|.
+    endif.
+*   get operator
+    lv_op = me-&gt;get_sql_operator( sign = ls_input-sign option = ls_input-option ).
+*   double quotation marks
+    ls_input-low = me-&gt;doule_hyphen( ls_input-low ).
+*   set low sql fieldvalue
+    lv_low = |&apos;{ ls_input-low }&apos;|.
+*   cp and np operators
+    if ls_input-option eq &apos;CP&apos; or ls_input-option eq &apos;NP&apos;.
+      assign lv_low to &lt;lv_str&gt;.
+      if not ( &lt;lv_str&gt; ca &apos;%_&apos; and escape eq abap_true ). clear escape. endif.
+      while &lt;lv_str&gt; ca &apos;#*+%_&apos;.
+        assign &lt;lv_str&gt;+sy-fdpos(*) to &lt;lv_str&gt;.
+        if &lt;lv_str&gt;(1) ca &apos;%_&apos; and escape = abap_true.
+          if strlen( lv_low ) lt gc_1024. shift &lt;lv_str&gt; right by 1 places. &lt;lv_str&gt;(1) = &apos;#&apos;. assign &lt;lv_str&gt;+1(*) to &lt;lv_str&gt;. endif.
+        elseif &lt;lv_str&gt;(1) = &apos;#&apos;.
+          if strlen( &lt;lv_str&gt; ) gt 1 and &lt;lv_str&gt;+1(1) ca &apos;#_%&apos; and escape ne space. assign &lt;lv_str&gt;+1(*) to &lt;lv_str&gt;. else. shift &lt;lv_str&gt; left by 1 places. endif.
+        elseif &lt;lv_str&gt;(1) = &apos;*&apos;.
+          &lt;lv_str&gt;(1) = &apos;%&apos;.
+        elseif &lt;lv_str&gt;(1) = &apos;+&apos;.
+          &lt;lv_str&gt;(1) = &apos;_&apos;.
+        endif.
+        if strlen( &lt;lv_str&gt; ) gt 1. assign &lt;lv_str&gt;+1(*) to &lt;lv_str&gt;. else. exit. endif.
+      endwhile.
+      if escape eq abap_true. lv_high = | ESCAPE &apos;&apos;#&apos;&apos;|. clear: escape. endif.
+    endif.
+*   bt and nb operators
+    if ls_input-option eq &apos;BT&apos; or ls_input-option = &apos;NB&apos;.
+      ls_input-high = me-&gt;doule_hyphen( ls_input-high ).
+      lv_high = |AND &apos;{ ls_input-high }&apos;|.
+    endif.
+*   build result
+    result = |{ result } { lv_concat } { ls_input-fieldname } { lv_op } { lv_low }|.
+    if lv_high ne space. result = |{ result } { lv_high }|. endif.
+*   temporary
+    lv_last_fname = ls_input-fieldname. lv_last_sign = ls_input-sign.
+  endloop.
+
+* last parenthesis
+  if not result is initial. result = |{ result } )|. endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT" VERSION="1" LANGU="E" DESCRIPT="Get Result" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT" SCONAME="INDEX" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="I" PARVALUE="0"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <source>method get_result.
+
+  data: lo_desc   type ref to cl_abap_typedescr,
+        lo_struc  type ref to cl_abap_structdescr,
+        ls_result type ref to data.
+
+  field-symbols: &lt;ls_result1&gt; type any,
+                 &lt;ls_result2&gt; type any,
+                 &lt;lt_result1&gt; type standard table,
+                 &lt;lt_result2&gt; type standard table.
+
+  if me-&gt;result is bound.
+*   to fs to handle easily
+    assign me-&gt;result-&gt;* to &lt;lt_result1&gt;.
+*   nothing to return
+    if &lt;lt_result1&gt; is initial. return. endif.
+*   specific line or full recordset
+    if index gt 0.
+*     just a specific line
+      read table &lt;lt_result1&gt; assigning &lt;ls_result1&gt; index index. if sy-subrc eq 0. move-corresponding &lt;ls_result1&gt; to result. endif.
+    else.
+*     to fs to easy handle
+      assign result to &lt;lt_result2&gt;.
+*     first line to have a structured data
+      read table &lt;lt_result1&gt; assigning &lt;ls_result1&gt; index 1.
+*     dynamic build second one as first one
+      lo_desc = cl_abap_structdescr=&gt;describe_by_data( &lt;ls_result1&gt; ).
+      lo_struc ?= lo_desc. create data ls_result type handle lo_struc.
+*     to fs to easy handle
+      assign ls_result-&gt;* to &lt;ls_result2&gt;.
+*     prepare result
+      loop at &lt;lt_result1&gt; assigning &lt;ls_result1&gt;. move-corresponding &lt;ls_result1&gt; to &lt;ls_result2&gt;. append &lt;ls_result2&gt; to &lt;lt_result2&gt;. endloop.
+    endif.
+  endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT_DATA" VERSION="1" LANGU="E" DESCRIPT="Get Result Data" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT_DATA" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="DATA"/>
+   <source>method get_result_data.
+
+  result = me-&gt;result.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT_TIMESTAMP" VERSION="1" LANGU="E" DESCRIPT="Get Result Date/Time" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_RESULT_TIMESTAMP" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Query Result Timestamp" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLTIMESTAMP_S"/>
+   <source>method get_result_timestamp.
+
+  if not me-&gt;result_date is initial. result-date = me-&gt;result_date. endif.
+  if not me-&gt;result_time is initial. result-time = me-&gt;result_time. endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_SQL_OPERATOR" VERSION="1" LANGU="E" DESCRIPT="Get SQL Operator" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_SQL_OPERATOR" SCONAME="SIGN" VERSION="1" LANGU="E" DESCRIPT="ABAP: ID: I/E (include/exclude values)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TVARV_SIGN"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_SQL_OPERATOR" SCONAME="OPTION" VERSION="1" LANGU="E" DESCRIPT="ABAP: Selection option (EQ/BT/CP/...)" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TVARV_OPTI"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_SQL_OPERATOR" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <source>method GET_SQL_OPERATOR.
+
+  if sign eq &apos;I&apos;.
+    case option.
+      when &apos;BT&apos;. result = &apos;BETWEEN&apos;.
+      when &apos;NB&apos;. result = &apos;NOT BETWEEN&apos;.
+      when &apos;CP&apos;. result = &apos;LIKE&apos;.
+      when &apos;NP&apos;. result = &apos;NOT LIKE&apos;.
+      when others. result = &apos;EQ&apos;.
+    endcase.
+  else.
+    case option.
+      when &apos;EQ&apos;. result = &apos;NE&apos;.
+      when &apos;NE&apos;. result = &apos;EQ&apos;.
+      when &apos;GT&apos;. result = &apos;LE&apos;.
+      when &apos;LE&apos;. result = &apos;GT&apos;.
+      when &apos;GE&apos;. result = &apos;LT&apos;.
+      when &apos;LT&apos;. result = &apos;GE&apos;.
+      when &apos;BT&apos;. result = &apos;NOT BETWEEN&apos;.
+      when &apos;NB&apos;. result = &apos;BETWEEN&apos;.
+      when &apos;CP&apos;. result = &apos;NOT LIKE&apos;.
+      when &apos;NP&apos;. result = &apos;LIKE&apos;.
+      when others. clear result.
+    endcase.
+  endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_WHERE_AS_STRING" VERSION="1" LANGU="E" DESCRIPT="Get Where Clause" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="GET_WHERE_AS_STRING" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING"/>
+   <source>method get_where_as_string.
+
+  data: ls_query type rfc_db_opt.
+
+  loop at me-&gt;where into ls_query. result = |{ result }{ ls_query-text }|. endloop.
+
+  condense result.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="NEW" VERSION="1" LANGU="E" DESCRIPT="Build Instance" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="NEW" SCONAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="NEW" SCONAME="TABLE" VERSION="1" LANGU="E" DESCRIPT="Table Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TABNAME"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="NEW" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Query" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="ZCL_SRQLQUERY"/>
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="NEW" SCONAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method new.
+
+  data: lv_dest type string.
+
+* check destination
+  if not destination is initial.
+    lv_dest = destination.
+    call function &apos;RFC_VERIFY_DESTINATION&apos; exporting destination = lv_dest exceptions others = 1.
+    if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_rfc. endif.
+  endif.
+
+* table check
+  if table is initial. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_table. endif.
+
+* build object
+  create object result exporting destination = destination table = table.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_RESULT" VERSION="1" LANGU="E" DESCRIPT="Declare Fields of Interest in Result" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_RESULT" SCONAME="FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_RESULT" SCONAME="DDIC_STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRUKNAME" PAROPTIONL="X"/>
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_RESULT" SCONAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method prepare_result.
+
+  data: lv_field type fieldname,
+        ls_field type dfies,
+        ls_dfies type dfies,
+        lt_dfies type standard table of dfies.
+
+* check input
+  if ( fields is initial and ddic_structure is initial ) or ( not fields is initial and not ddic_structure is initial ).
+    raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_result.
+  endif.
+
+* field list
+  if not fields is initial.
+*   check specififed fields
+    loop at fields into lv_field.
+*     keep only queryable fields (length less or equal 512 characters)
+      read table me-&gt;table_fields into ls_field with key fieldname = lv_field.
+      if not ( sy-subrc eq 0 and ls_field-leng le zcl_srqlquery=&gt;c_queryable_field_max_length ). raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_rfc fieldname = ls_field-fieldname. endif.
+    endloop.
+*   prepare
+    loop at me-&gt;table_fields into ls_field.
+*     always add key fields
+      if ls_field-keyflag eq &apos;X&apos;. append ls_field-fieldname to me-&gt;result_fields. continue. endif.
+*     requested -&gt; add
+      read table fields into lv_field with key table_line = ls_field-fieldname.
+      if sy-subrc eq 0. append ls_field-fieldname to me-&gt;result_fields. continue. endif.
+    endloop.
+  endif.
+
+* input structure
+  if not ddic_structure is initial.
+*   get ddic structure fields
+    call function &apos;DDIF_FIELDINFO_GET&apos; exporting tabname = ddic_structure tables dfies_tab = lt_dfies exceptions others = 1.
+    if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_structure. endif.
+*   check key fields specified
+    loop at me-&gt;table_fields into ls_field where keyflag eq &apos;X&apos;.
+      read table lt_dfies into ls_dfies with key fieldname = ls_field-fieldname.
+      if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_struc_no_key structure = ddic_structure table = me-&gt;table. endif.
+    endloop.
+*   prepare fields
+    loop at lt_dfies into ls_dfies. append ls_dfies-fieldname to me-&gt;result_fields. endloop.
+  endif.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_STATEMENT" VERSION="1" LANGU="E" DESCRIPT="Declare Where Clause" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_STATEMENT" SCONAME="STRING" VERSION="1" LANGU="E" DESCRIPT="Query as String" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_STATEMENT" SCONAME="SELECT_OPTION" VERSION="1" LANGU="E" DESCRIPT="Query as Select Option" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLSOQUERY_TT" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_STATEMENT" SCONAME="CONJUNCTION" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+   <exception CLSNAME="ZCL_SRQLQUERY" CMPNAME="PREPARE_STATEMENT" SCONAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method prepare_statement.
+
+  data: lt_split type standard table of string,
+        ls_field type dfies,
+        ls_so    type zsrqlsoquery_s,
+        lv_split type string,
+        lv_fname type fieldname.
+
+* all to upper
+  translate: string to upper case.
+
+* check input
+  if not string is initial and not select_option is initial and not ( conjunction eq zif_srqlconjunction=&gt;and or conjunction eq zif_srqlconjunction=&gt;or ).
+    raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_conjunction.
+  endif.
+
+* check select option fields - if specified
+  loop at select_option into ls_so.
+    read table me-&gt;table_fields into ls_field with key fieldname = ls_so-fieldname.
+    if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_no_field table = me-&gt;table fieldname = ls_so-fieldname. endif.
+  endloop.
+
+* check string - if specified
+  split string at space into table lt_split.
+* purge logical words &amp; values
+  delete lt_split where ( table_line eq `(` or table_line eq `)` or table_line cp `&apos;*&apos;` or table_line co &apos;0123456789.&apos; or
+                          table_line eq &apos;EQ&apos; or table_line eq &apos;BETWEEN&apos; or table_line eq &apos;NOT&apos; or table_line eq &apos;LIKE&apos; or table_line eq &apos;NE&apos; or table_line eq &apos;LT&apos; or table_line eq &apos;GT&apos; or table_line eq &apos;LE&apos; or table_line eq &apos;GE&apos; or
+                          table_line eq &apos;=&apos; or table_line eq &apos;&lt;&gt;&apos;  or table_line eq &apos;&gt;&apos; or table_line eq &apos;&lt;&apos; or table_line eq &apos;&gt;=&apos; or table_line eq &apos;&lt;=&apos; ).
+* check left words (fields)
+  loop at lt_split into lv_split.
+    lv_fname = lv_split.
+    read table me-&gt;table_fields into ls_field with key fieldname = lv_fname.
+    if sy-subrc ne 0. raise exception type zcx_srqlquery exporting textid = zcx_srqlquery=&gt;zcx_srqlquery_no_field table = me-&gt;table fieldname = lv_fname. endif.
+  endloop.
+
+* prepare
+  if not string is initial and not select_option is initial. string = |( { string } ) { conjunction } (|. endif.
+  if not select_option is initial. string = |{ string } { me-&gt;explode_select_option( select_option ) }|. endif.
+
+* no border gaps
+  condense string.
+
+* fill instance attribute
+  me-&gt;build_where( string ).
+
+endmethod.</source>
+  </method>
+ </CLAS>
+ <CLAS CLSNAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
+  <implementing CLSNAME="ZCX_SRQLTYPE" REFCLSNAME="IF_T100_MESSAGE" VERSION="1" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="0 "/>
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRUKNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="21 " SRCCOLUMN1="4 " SRCROW2="28 " SRCCOLUMN2="22 " LOCKED="X" TYPESRC_LENG="293 " TYPESRC="begin of ZCX_SRQLTYPE,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;000&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_COMPONENTS" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="19 " SRCCOLUMN2="33 " LOCKED="X" TYPESRC_LENG="324 " TYPESRC="begin of ZCX_SRQLTYPE_COMPONENTS,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;011&apos;,
+      attr1 type scx_attrname value &apos;STRUCTURE&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_COMPONENTS
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_DATA" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="57 " SRCCOLUMN1="4 " SRCROW2="64 " SRCCOLUMN2="27 " LOCKED="X" TYPESRC_LENG="303 " TYPESRC="begin of ZCX_SRQLTYPE_DATA,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;013&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_DATA
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_DESCRIPTOR" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="48 " SRCCOLUMN1="4 " SRCROW2="55 " SRCCOLUMN2="33 " LOCKED="X" TYPESRC_LENG="315 " TYPESRC="begin of ZCX_SRQLTYPE_DESCRIPTOR,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;012&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_DESCRIPTOR
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_ELEMENT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="66 " SRCCOLUMN1="4 " SRCROW2="73 " SRCCOLUMN2="30 " LOCKED="X" TYPESRC_LENG="309 " TYPESRC="begin of ZCX_SRQLTYPE_ELEMENT,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;014&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_ELEMENT
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_KIND" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="30 " SRCCOLUMN1="4 " SRCROW2="37 " SRCCOLUMN2="27 " LOCKED="X" TYPESRC_LENG="303 " TYPESRC="begin of ZCX_SRQLTYPE_KIND,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;009&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_KIND
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_NAME" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="39 " SRCCOLUMN1="4 " SRCROW2="46 " SRCCOLUMN2="27 " LOCKED="X" TYPESRC_LENG="303 " TYPESRC="begin of ZCX_SRQLTYPE_NAME,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;010&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_NAME
+"/>
+  <inheritance CLSNAME="ZCX_SRQLTYPE" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
+ </CLAS>
+ <CLAS CLSNAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
+  <implementing CLSNAME="ZCX_SRQLQUERY" REFCLSNAME="IF_T100_MESSAGE" VERSION="1" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="0 "/>
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="FIELDNAME" VERSION="1" LANGU="E" DESCRIPT="Field Name" EXPOSURE="2" STATE="1" EDITORDER="12 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Field Name" EXPOSURE="2" STATE="1" EDITORDER="11 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="TABLE" VERSION="1" LANGU="E" DESCRIPT="Table Name" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="TABNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_CONJUNCTION" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="4 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="39 " SRCCOLUMN1="4 " SRCROW2="46 " SRCCOLUMN2="35 " LOCKED="X" TYPESRC_LENG="319 " TYPESRC="begin of ZCX_SRQLQUERY_CONJUNCTION,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;003&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_CONJUNCTION
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_EXECUTION" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="6 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="57 " SRCCOLUMN1="4 " SRCROW2="64 " SRCCOLUMN2="33 " LOCKED="X" TYPESRC_LENG="320 " TYPESRC="begin of ZCX_SRQLQUERY_EXECUTION,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;005&apos;,
+      attr1 type scx_attrname value &apos;TABLE&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_EXECUTION
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_FIELD" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="21 " SRCCOLUMN1="4 " SRCROW2="28 " SRCCOLUMN2="29 " LOCKED="X" TYPESRC_LENG="316 " TYPESRC="begin of ZCX_SRQLQUERY_FIELD,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;001&apos;,
+      attr1 type scx_attrname value &apos;FIELDNAME&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_FIELD
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_NO_FIELD" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="30 " SRCCOLUMN1="4 " SRCROW2="37 " SRCCOLUMN2="32 " LOCKED="X" TYPESRC_LENG="327 " TYPESRC="begin of ZCX_SRQLQUERY_NO_FIELD,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;002&apos;,
+      attr1 type scx_attrname value &apos;FIELDNAME&apos;,
+      attr2 type scx_attrname value &apos;TABLE&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_NO_FIELD
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_RESULT" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="84 " SRCCOLUMN1="4 " SRCROW2="91 " SRCCOLUMN2="30 " LOCKED="X" TYPESRC_LENG="309 " TYPESRC="begin of ZCX_SRQLQUERY_RESULT,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;008&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_RESULT
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_RFC" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="12 " SRCCOLUMN1="4 " SRCROW2="19 " SRCCOLUMN2="27 " LOCKED="X" TYPESRC_LENG="303 " TYPESRC="begin of ZCX_SRQLQUERY_RFC,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;000&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_RFC
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_STRUCTURE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="7 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="66 " SRCCOLUMN1="4 " SRCROW2="73 " SRCCOLUMN2="33 " LOCKED="X" TYPESRC_LENG="315 " TYPESRC="begin of ZCX_SRQLQUERY_STRUCTURE,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;006&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_STRUCTURE
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_STRUC_NO_KEY" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="75 " SRCCOLUMN1="4 " SRCROW2="82 " SRCCOLUMN2="36 " LOCKED="X" TYPESRC_LENG="335 " TYPESRC="begin of ZCX_SRQLQUERY_STRUC_NO_KEY,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;007&apos;,
+      attr1 type scx_attrname value &apos;STRUCTURE&apos;,
+      attr2 type scx_attrname value &apos;TABLE&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_STRUC_NO_KEY
+"/>
+  <attribute CLSNAME="ZCX_SRQLQUERY" CMPNAME="ZCX_SRQLQUERY_TABLE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="5 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="48 " SRCCOLUMN1="4 " SRCROW2="55 " SRCCOLUMN2="29 " LOCKED="X" TYPESRC_LENG="307 " TYPESRC="begin of ZCX_SRQLQUERY_TABLE,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;004&apos;,
+      attr1 type scx_attrname value &apos;&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLQUERY_TABLE
+"/>
+  <inheritance CLSNAME="ZCX_SRQLQUERY" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
+ </CLAS>
+ <CLAS CLSNAME="ZCL_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="remote Data Type Builder" CATEGORY="00" EXPOSURE="0" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZCL_SRQLTYPE" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_DATE" VERSION="1" LANGU="E" DESCRIPT="Current Date of Application Server" EXPOSURE="0" STATE="1" EDITORDER="7 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SYDATUM" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TIME" VERSION="1" LANGU="E" DESCRIPT="Current Time of Application Server" EXPOSURE="0" STATE="1" EDITORDER="8 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="SYUZEIT" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="DESCRIPTOR" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" EXPOSURE="0" STATE="1" EDITORDER="6 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="3" TYPE="CL_ABAP_DATADESCR" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" EXPOSURE="0" STATE="1" EDITORDER="1 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="RFCDEST" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="OFFSET_FIELDS" VERSION="1" LANGU="E" DESCRIPT="Checkbox" EXPOSURE="0" STATE="1" EDITORDER="5 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="XFELD" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="OFFSET_FNAME_PREFIX" VERSION="1" LANGU="E" EXPOSURE="0" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTVALUE="&apos;ZZOFFSET_&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRING" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="TYPEFIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" EXPOSURE="0" STATE="1" EDITORDER="4 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="TYPEKIND" VERSION="1" LANGU="E" DESCRIPT="Type Kind" EXPOSURE="0" STATE="1" EDITORDER="3 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCL_SRQLTYPE" CMPNAME="TYPENAME" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" EXPOSURE="0" STATE="1" EDITORDER="2 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="TYPENAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" VERSION="1" LANGU="E" DESCRIPT="Build Data Element" EXPOSURE="0" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="ELEMENT" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="INTERNAL_TYPE" VERSION="1" LANGU="E" DESCRIPT="ABAP data type (C,D,N,...)" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="INTTYPE" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="INTERNAL_LENGTH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="I" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="DECIMALS" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="I" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_ELEMDESCR"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_ELE_DESCRIPTOR" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method build_ele_descriptor.
+
+  data: lx_root type ref to cx_root,
+        ls_dd4  type dd04v,
+        lv_dty  type inttype,
+        lv_dle  type i,
+        lv_dcs  type i,
+        lv_int2 type int2,
+        lv_int1 type int1.
+
+  try.
+
+*     local
+      if me-&gt;destination is initial. result ?= cl_abap_elemdescr=&gt;describe_by_name( element ). return. endif.
+
+*     remote with name
+      if not element is initial.
+        call function &apos;SRTT_GET_REMOTE_DTEL_DEF&apos; destination me-&gt;destination exporting iv_dtel_name = element importing ev_dd04v = ls_dd4 exceptions others = 1.
+        if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_descriptor. endif.
+        lv_dty = ls_dd4-datatype. lv_dle = ls_dd4-leng. lv_dcs = ls_dd4-decimals.
+        result = me-&gt;build_ele_descriptor( internal_type = lv_dty internal_length = lv_dle decimals = lv_dcs ).
+        return.
+      endif.
+
+*     remote with specification
+      case internal_type.
+        when cl_abap_elemdescr=&gt;typekind_int.     result = cl_abap_elemdescr=&gt;get_i( ).
+        when cl_abap_elemdescr=&gt;typekind_int1.    result ?= cl_abap_elemdescr=&gt;describe_by_data( lv_int1 ). &quot; no getters for int1
+        when cl_abap_elemdescr=&gt;typekind_int2.    result ?= cl_abap_elemdescr=&gt;describe_by_data( lv_int2 ). &quot; no getters for int2
+        when cl_abap_elemdescr=&gt;typekind_float.   result = cl_abap_elemdescr=&gt;get_f( ).
+        when cl_abap_elemdescr=&gt;typekind_date.    result = cl_abap_elemdescr=&gt;get_d( ).
+        when cl_abap_elemdescr=&gt;typekind_packed.  result = cl_abap_elemdescr=&gt;get_p( p_length = internal_length p_decimals = decimals ).
+        when cl_abap_elemdescr=&gt;typekind_char.    result = cl_abap_elemdescr=&gt;get_c( p_length = internal_length ).
+        when cl_abap_elemdescr=&gt;typekind_time.    result = cl_abap_elemdescr=&gt;get_t( ).
+        when cl_abap_elemdescr=&gt;typekind_num.     result = cl_abap_elemdescr=&gt;get_n( internal_length ).
+        when cl_abap_elemdescr=&gt;typekind_hex.     result = cl_abap_elemdescr=&gt;get_x( internal_length ).
+        when cl_abap_elemdescr=&gt;typekind_string.  result = cl_abap_elemdescr=&gt;get_string( ).
+        when cl_abap_elemdescr=&gt;typekind_xstring. result = cl_abap_elemdescr=&gt;get_xstring( ).
+        when others. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_descriptor.
+      endcase.
+
+    catch cx_static_check cx_dynamic_check into lx_root.
+
+      raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_descriptor previous = lx_root.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_STR_DESCRIPTOR" VERSION="1" LANGU="E" DESCRIPT="Build Structure" EXPOSURE="0" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_STR_DESCRIPTOR" SCONAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_STR_DESCRIPTOR" SCONAME="FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_STR_DESCRIPTOR" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_STRUCTDESCR"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_STR_DESCRIPTOR" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method build_str_descriptor.
+
+  data: lx_root type ref to cx_root.
+
+  try.
+
+*     local
+      if me-&gt;destination is initial. result ?= cl_abap_structdescr=&gt;describe_by_name( structure ). return. endif.
+
+*     remote
+      result = cl_abap_structdescr=&gt;create( me-&gt;get_type_components( structure = structure fields = fields ) ).
+
+    catch cx_static_check cx_dynamic_check into lx_root.
+
+      raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_descriptor previous = lx_root.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TTY_DESCRIPTOR" VERSION="1" LANGU="E" DESCRIPT="Build Table Type" EXPOSURE="0" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TTY_DESCRIPTOR" SCONAME="LINE" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TTY_DESCRIPTOR" SCONAME="FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TTY_DESCRIPTOR" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_TABLEDESCR"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="BUILD_TTY_DESCRIPTOR" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method build_tty_descriptor.
+
+  data: lo_line type ref to cl_abap_datadescr,
+        lx_root type ref to cx_root.
+
+  try.
+
+      if me-&gt;destination is initial.
+*       local
+        lo_line ?= cl_abap_structdescr=&gt;describe_by_name( line ).
+      else.
+*       remote
+        lo_line = cl_abap_structdescr=&gt;create( me-&gt;get_type_components( structure = line fields = fields ) ).
+      endif.
+
+*     build table type
+      result = cl_abap_tabledescr=&gt;create( p_line_type = lo_line p_table_kind = cl_abap_tabledescr=&gt;tablekind_std p_unique = abap_false ).
+
+    catch cx_static_check cx_dynamic_check into lx_root.
+
+      raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_descriptor previous = lx_root.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" VERSION="1" LANGU="E" DESCRIPT="Object Builder" EXPOSURE="0" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="2" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="2" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="TYPENAME" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="2" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="TYPEKIND" VERSION="1" LANGU="E" DESCRIPT="Type Kind" CMPTYPE="1" MTDTYPE="2" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="TYPEFIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="2" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="OFFSET_FIELDS" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="2" EDITORDER="5 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="XFELD" PARVALUE="SPACE"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="CONSTRUCTOR" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="2" EDITORDER="1 "/>
+   <source>method constructor.
+
+* set attributes
+  me-&gt;destination = destination.
+  me-&gt;typename = typename.
+  me-&gt;typekind = typekind.
+
+* check typefields
+  if typekind eq zif_srqltypekind=&gt;data_element and ( not typefields is initial or offset_fields eq &apos;X&apos; ). raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_element. endif.
+
+  me-&gt;typefields = typefields.
+  me-&gt;offset_fields = offset_fields.
+
+* check exist
+  case typekind.
+    when zif_srqltypekind=&gt;data_element. me-&gt;descriptor = me-&gt;build_ele_descriptor( element = me-&gt;typename ).
+    when zif_srqltypekind=&gt;structure. me-&gt;descriptor = me-&gt;build_str_descriptor( structure = me-&gt;typename fields = me-&gt;typefields ).
+    when zif_srqltypekind=&gt;table_type. me-&gt;descriptor = me-&gt;build_tty_descriptor( line = me-&gt;typename fields = me-&gt;typefields ).
+    when others. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_kind.
+  endcase.
+
+* set build date
+  me-&gt;build_date = sy-datum.
+  me-&gt;build_time = sy-uzeit.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_BUILD_DATE" VERSION="1" LANGU="E" DESCRIPT="Get Build Date" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_BUILD_DATE" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Current Date of Application Server" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SYDATUM"/>
+   <source>method get_build_date.
+
+  result = me-&gt;build_date.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_BUILD_TIME" VERSION="1" LANGU="E" DESCRIPT="Get Build Time" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_BUILD_TIME" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Current Time of Application Server" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="SYUZEIT"/>
+   <source>method get_build_time.
+
+  result = me-&gt;build_time.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_DATA" VERSION="1" LANGU="E" DESCRIPT="Get Data Type" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_DATA" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="DATA"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_DATA" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method get_data.
+
+  data: lx_root type ref to cx_root.
+
+  try.
+    create data result type handle me-&gt;descriptor.
+    catch cx_static_check cx_dynamic_check into lx_root.
+      raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_data previous = lx_root.
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_DESCRIPTOR" VERSION="1" LANGU="E" DESCRIPT="Get Descriptor" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_DESCRIPTOR" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Runtime Type Services" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_DATADESCR"/>
+   <source>method get_descriptor.
+
+  result = me-&gt;descriptor.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_TYPE_COMPONENTS" VERSION="1" LANGU="E" DESCRIPT="Prepare Components" EXPOSURE="0" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_TYPE_COMPONENTS" SCONAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_TYPE_COMPONENTS" SCONAME="FIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_TYPE_COMPONENTS" SCONAME="RESULT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="ABAP_COMPONENT_TAB"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="GET_TYPE_COMPONENTS" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method get_type_components.
+
+  data: lt_fields    type standard table of dfies,
+        lt_lines     type ddtypelist,
+        ls_line      type ddtypedesc,
+        ls_lfield    type dfies,
+        ls_comp      type abap_componentdescr,
+        ls_dfies     type dfies,
+        ls_tmp_dfies type dfies,
+        ls_x030l     type x030l,
+        lv_intlen    type i,
+        lv_decimals  type i,
+        lv_off       type i,
+        lv_tabix     type sytabix,
+        lv_field     type fieldname,
+        lv_count     type numc3 value 1.
+
+  data: lo_struc     type ref to cl_abap_structdescr,
+        lx_root      type ref to cx_root.
+
+* check typekind
+  if not ( me-&gt;typekind eq zif_srqltypekind=&gt;table_type or me-&gt;typekind eq zif_srqltypekind=&gt;structure ). raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_components structure = structure. endif.
+
+* component table builder
+  try.
+
+*     local
+      if me-&gt;destination is initial. lo_struc ?= cl_abap_structdescr=&gt;describe_by_name( structure ). result = lo_struc-&gt;get_components( ). return. endif.
+
+*     remote
+      call function &apos;DDIF_FIELDINFO_GET&apos; destination me-&gt;destination exporting tabname = structure all_types = &apos;X&apos; importing x030l_wa = ls_x030l lines_descr = lt_lines tables dfies_tab = lt_fields exceptions others = 1.
+      if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_components structure = structure. endif.
+*     build structure field by field (nested structures have lfieldname valued has struc-field)
+      loop at lt_fields into ls_dfies where not lfieldname cs &apos;-&apos;.
+*       internal length determination
+        case ls_dfies-inttype.
+          when cl_abap_elemdescr=&gt;typekind_char or cl_abap_elemdescr=&gt;typekind_date or cl_abap_elemdescr=&gt;typekind_time or cl_abap_elemdescr=&gt;typekind_num. lv_intlen   = ls_dfies-intlen / ls_x030l-unicodelg.
+          when cl_abap_elemdescr=&gt;typekind_table or cl_abap_elemdescr=&gt;typekind_struct1 or cl_abap_elemdescr=&gt;typekind_struct2. &quot;do nothing -&gt; intlen doesn&apos;t matter when building elements!
+          when others. lv_intlen = ls_dfies-intlen.
+        endcase.
+*       decimals
+        lv_decimals = ls_dfies-decimals.
+*       offset management with a dummy fill to handle rfc return misplacement (if needed)
+        if ls_dfies-offset - ( ls_tmp_dfies-offset + ls_tmp_dfies-intlen ) gt 0.
+*         build byte element
+          lv_off = ls_dfies-offset - ( ls_tmp_dfies-offset + ls_tmp_dfies-intlen ).
+          ls_comp-type = cl_abap_elemdescr=&gt;get_x( lv_off ). ls_comp-name = |{ zcl_srqltype=&gt;offset_fname_prefix }_{ lv_count }|. append ls_comp to result. add 1 to lv_count.
+        endif.
+*       field management by means of internal abap types
+        ls_comp-name = ls_dfies-fieldname.
+*       build field data type
+        case ls_dfies-inttype.
+*         build table type
+          when cl_abap_elemdescr=&gt;typekind_table.
+*           build nested table type
+            read table lt_lines into ls_line with key typename = ls_dfies-rollname. if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_components structure = structure. endif.
+            read table ls_line-fields into ls_lfield with key tabname = ls_line-typename. if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_components structure = structure. endif.
+            ls_comp-type = me-&gt;build_tty_descriptor( ls_lfield-rollname ).
+*         build structure
+          when cl_abap_elemdescr=&gt;typekind_struct1 or cl_abap_elemdescr=&gt;typekind_struct2.
+*           build nested structure
+            ls_comp-type = me-&gt;build_str_descriptor( ls_dfies-rollname ).
+*         build element (also for included structures)
+          when others.
+*           build element
+            ls_comp-type = me-&gt;build_ele_descriptor( internal_type = ls_dfies-inttype internal_length = lv_intlen decimals = lv_decimals ).
+        endcase.
+*       add in result
+        append ls_comp to result.
+*       set as temporary
+        ls_tmp_dfies = ls_dfies.
+      endloop.
+
+*     purge offsets (if asked)
+      if me-&gt;offset_fields ne abap_true. delete result where name cp |{ zcl_srqltype=&gt;offset_fname_prefix }_*|. endif.
+
+*     purge undesired fields (but keep offset if previously left)
+      if not fields is initial.
+        loop at result into ls_comp where not name cp |{ zcl_srqltype=&gt;offset_fname_prefix }_*|. lv_tabix = sy-tabix.
+          read table fields into lv_field
+            &quot;#EC WARNOK
+            with key table_line = ls_comp-name. if sy-subrc ne 0. delete result index lv_tabix. endif.
+        endloop.
+      endif.
+
+    catch cx_static_check cx_dynamic_check into lx_root.
+
+      raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_components previous = lx_root structure = structure.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" VERSION="1" LANGU="E" DESCRIPT="Get New" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="DESTINATION" VERSION="1" LANGU="E" DESCRIPT="Logical Destination (Specified in Function Call)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="RFCDEST" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="TYPENAME" VERSION="1" LANGU="E" DESCRIPT="Name of Dictionary Type" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="TYPENAME"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="TYPEKIND" VERSION="1" LANGU="E" DESCRIPT="Type Kind" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="TYPEFIELDS" VERSION="1" LANGU="E" DESCRIPT="Table of field names" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="OFFSET_FIELDS" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="5 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="XFELD" PARVALUE="SPACE"/>
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="remote Data Type Builder" CMPTYPE="1" MTDTYPE="0" EDITORDER="6 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="3" TYPE="ZCL_SRQLTYPE"/>
+   <exception CLSNAME="ZCL_SRQLTYPE" CMPNAME="NEW" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method new.
+
+  data: lv_dest type string.
+
+* check destination
+  if not destination is initial.
+    lv_dest = destination.
+    call function &apos;RFC_VERIFY_DESTINATION&apos; exporting destination = lv_dest exceptions others = 1.
+    if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype. endif.
+  endif.
+
+* check typekind
+  if not ( typekind eq zif_srqltypekind=&gt;structure or typekind eq zif_srqltypekind=&gt;table_type or typekind eq zif_srqltypekind=&gt;data_element ). raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_kind. endif.
+
+* check name
+  if typename is initial. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_name. endif.
+
+* build object
+  create object result exporting destination = destination typename = typename typekind = typekind typefields = typefields offset_fields = offset_fields.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLTYPE" CMPNAME="OFFSET_FIELDS_PURGED" VERSION="1" LANGU="E" DESCRIPT="Offset Fields Purged?" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="0" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLTYPE" CMPNAME="OFFSET_FIELDS_PURGED" SCONAME="RESULT" VERSION="1" LANGU="E" DESCRIPT="Checkbox" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="XFELD"/>
+   <source>method offset_fields_purged.
+
+  if me-&gt;offset_fields ne abap_true. result = abap_true. endif.
+
+endmethod.</source>
+  </method>
+ </CLAS>
+ <DOMA DOMNAME="ZSRQLTYPEKIND" MultiLanguageSupport="X">
+  <DDLANGUAGE LANGU="E">
+   <DD01V DOMNAME="ZSRQLTYPEKIND" DDLANGUAGE="E" DATATYPE="CHAR" LENG="000003" OUTPUTLEN="000003" DECIMALS="000000" VALEXI="X" MASKLEN="0000" DDTEXT="Type Kind" AUTHCLASS="00" OUTPUTSTYLE="00"/>
+   <DD07V DOMNAME="ZSRQLTYPEKIND" VALPOS="0001" DDLANGUAGE="E" DOMVALUE_L="STR" DDTEXT="Structure"/>
+   <DD07V DOMNAME="ZSRQLTYPEKIND" VALPOS="0002" DDLANGUAGE="E" DOMVALUE_L="TTY" DDTEXT="Table Type"/>
+   <DD07V DOMNAME="ZSRQLTYPEKIND" VALPOS="0003" DDLANGUAGE="E" DOMVALUE_L="ELE" DDTEXT="Data Element"/>
+  </DDLANGUAGE>
+ </DOMA>
+ <DOMA DOMNAME="ZSRQLCONJUNCTION" MultiLanguageSupport="X">
+  <DDLANGUAGE LANGU="E">
+   <DD01V DOMNAME="ZSRQLCONJUNCTION" DDLANGUAGE="E" DATATYPE="CHAR" LENG="000003" OUTPUTLEN="000003" DECIMALS="000000" VALEXI="X" MASKLEN="0000" DDTEXT="Logical Conjunction" AUTHCLASS="00" OUTPUTSTYLE="00"/>
+   <DD07V DOMNAME="ZSRQLCONJUNCTION" VALPOS="0001" DDLANGUAGE="E" DOMVALUE_L="AND" DDTEXT="and logical conjunction"/>
+   <DD07V DOMNAME="ZSRQLCONJUNCTION" VALPOS="0002" DDLANGUAGE="E" DOMVALUE_L="OR" DDTEXT="or logical conjunction"/>
+  </DDLANGUAGE>
+ </DOMA>
+ <DTEL ROLLNAME="ZSRQLTYPEKIND" DDLANGUAGE="E" DOMNAME="ZSRQLTYPEKIND" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="20" SCRLEN3="40" DDTEXT="Type Kind" REPTEXT="Type Kind" SCRTEXT_S="Type Kind" SCRTEXT_M="Type Kind" SCRTEXT_L="Type Kind" AUTHCLASS="00" DTELMASTER="E" DATATYPE="CHAR" LENG="000003" DECIMALS="000000" OUTPUTLEN="000003" VALEXI="X" REFKIND="D" MultiLanguageSupport="X">
+  <tpara/>
+  <DDLANGUAGE LANGU="E">
+   <DD04V ROLLNAME="ZSRQLTYPEKIND" DDLANGUAGE="E" DOMNAME="ZSRQLTYPEKIND" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="20" SCRLEN3="40" DDTEXT="Type Kind" REPTEXT="Type Kind" SCRTEXT_S="Type Kind" SCRTEXT_M="Type Kind" SCRTEXT_L="Type Kind" AUTHCLASS="00" DTELMASTER="E" DATATYPE="CHAR" LENG="000003" DECIMALS="000000" OUTPUTLEN="000003" VALEXI="X" REFKIND="D"/>
+  </DDLANGUAGE>
+ </DTEL>
+ <DTEL ROLLNAME="ZSRQLCONJUNCTION" DDLANGUAGE="E" DOMNAME="ZSRQLCONJUNCTION" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="20" SCRLEN3="40" DDTEXT="Logical Conjunction" REPTEXT="Logical Conjunction" SCRTEXT_S="Log. Conj." SCRTEXT_M="Logical Conjunction" SCRTEXT_L="Logical Conjunction" AUTHCLASS="00" DTELMASTER="E" DATATYPE="CHAR" LENG="000003" DECIMALS="000000" OUTPUTLEN="000003" VALEXI="X" REFKIND="D" MultiLanguageSupport="X">
+  <tpara/>
+  <DDLANGUAGE LANGU="E">
+   <DD04V ROLLNAME="ZSRQLCONJUNCTION" DDLANGUAGE="E" DOMNAME="ZSRQLCONJUNCTION" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="20" SCRLEN3="40" DDTEXT="Logical Conjunction" REPTEXT="Logical Conjunction" SCRTEXT_S="Log. Conj." SCRTEXT_M="Logical Conjunction" SCRTEXT_L="Logical Conjunction" AUTHCLASS="00" DTELMASTER="E" DATATYPE="CHAR" LENG="000003" DECIMALS="000000" OUTPUTLEN="000003" VALEXI="X" REFKIND="D"/>
+  </DDLANGUAGE>
+ </DTEL>
+ <INTF CLSNAME="ZIF_SRQLTYPEKIND" VERSION="1" LANGU="E" DESCRIPT="SRQL Type Kind" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" UNICODE="X">
+  <attribute CLSNAME="ZIF_SRQLTYPEKIND" CMPNAME="DATA_ELEMENT" VERSION="1" LANGU="E" DESCRIPT="Type Kind" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;ELE&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZIF_SRQLTYPEKIND" CMPNAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Type Kind" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;STR&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZIF_SRQLTYPEKIND" CMPNAME="TABLE_TYPE" VERSION="1" LANGU="E" DESCRIPT="Type Kind" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTVALUE="&apos;TTY&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLTYPEKIND" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ </INTF>
+ <INTF CLSNAME="ZIF_SRQLCONJUNCTION" VERSION="1" LANGU="E" DESCRIPT="Logical Conjunction" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" UNICODE="X">
+  <attribute CLSNAME="ZIF_SRQLCONJUNCTION" CMPNAME="AND" VERSION="1" LANGU="E" DESCRIPT="Logical Conjunction" EXPOSURE="2" STATE="1" EDITORDER="1 " ATTDECLTYP="2" ATTVALUE="&apos;AND&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLCONJUNCTION" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZIF_SRQLCONJUNCTION" CMPNAME="OR" VERSION="1" LANGU="E" DESCRIPT="Logical Conjunction" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;OR&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLCONJUNCTION" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+ </INTF>
+ <MSAG ARBGB="ZSRQL" MASTERLANG="E" RESPUSER="BELLET">
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="000" TEXT="invalid rfc destination specified"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="001" TEXT="cannot query field &amp;1: length more than 512 characters or doesn&apos;t exist"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="002" TEXT="field &amp;1 doesn&apos;t exist on table &amp;2"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="003" TEXT="invalid logical conjunction"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="004" TEXT="invalid table specified"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="005" TEXT="query on table &amp;1 failed"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="006" TEXT="invalid structure specified"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="007" TEXT="structure &amp;1 without key fields of table &amp;2"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="008" TEXT="result preparation failed"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="009" TEXT="invalid type kind"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="010" TEXT="invalid type name"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="011" TEXT="failed to get components of structure/table &amp;1"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="012" TEXT="failed to build descriptor"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="013" TEXT="failed to create data"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="014" TEXT="elements don&apos;t have offset, nor fields"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="015" TEXT="structure dnamically built as structure &amp;1 on destination &amp;2"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="015" TEXT="struttura generata dinamicamente come &amp;1 deifinita su destinazione &amp;2"/>
+  <t100t SPRSL="E" ARBGB="ZSRQL"/>
+ </MSAG>
+ <PROG NAME="ZSRQLDEMO" VARCL="X" SUBC="1" RMAND="800" RLOAD="E" FIXPT="X" UCCHECK="X">
+  <textPool>
+   <language SPRAS="E">
+    <textElement ID="I" KEY="001" ENTRY="Options" LENGTH="132 "/>
+    <textElement ID="I" KEY="002" ENTRY="Feature" LENGTH="132 "/>
+    <textElement ID="R" ENTRY="Demo" LENGTH="4 "/>
+    <textElement ID="S" KEY="P_BREAK" ENTRY="        Enable Break-Points" LENGTH="27 "/>
+    <textElement ID="S" KEY="P_DEST" ENTRY="        Destination" LENGTH="19 "/>
+    <textElement ID="S" KEY="P_QUERY" ENTRY="        Querying" LENGTH="16 "/>
+    <textElement ID="S" KEY="P_TYPE" ENTRY="        Dynamic Typing" LENGTH="22 "/>
+   </language>
+   <language SPRAS="I">
+    <textElement ID="I" KEY="001" ENTRY="Opzioni" LENGTH="132 "/>
+    <textElement ID="I" KEY="002" ENTRY="Caratteristica" LENGTH="132 "/>
+    <textElement ID="R" ENTRY="Demo" LENGTH="70 "/>
+    <textElement ID="S" KEY="P_BREAK" ENTRY="        Abilita Break-Point" LENGTH="27 "/>
+    <textElement ID="S" KEY="P_DEST" ENTRY="        Destinazione" LENGTH="20 "/>
+    <textElement ID="S" KEY="P_QUERY" ENTRY="        Costruzione Query" LENGTH="25 "/>
+    <textElement ID="S" KEY="P_TYPE" ENTRY="        Tipizzazione Dinamica" LENGTH="29 "/>
+   </language>
+  </textPool>
+  <source>*&amp;---------------------------------------------------------------------*
+*&amp; Report  ZSRQLDEMO
+*&amp;
+*&amp;---------------------------------------------------------------------*
+*&amp;
+*&amp;
+*&amp;---------------------------------------------------------------------*
+
+report zsrqldemo.
+
+* PROGRAM SHOW HOW TO USE REMOTE TYPE BUILDER AND QUERY ENGINE, THERE&apos;S NO OUTPUT! YOU CAN ENABLE PRE-DEFINED EXAMPLE BREAKPOINTS
+* IN ORDER TO SEE HOW TYPES ARE BUILT AND HANDLED AND HOW QUERIES ARE PERFORMED OR YOU CAN SET YOUR OWN BREAKPOINTS.
+
+* break-point macro definition
+  define _break.
+    ##NO_BREAK
+    break-point.
+  end-of-definition.
+
+* MAIN program class definition
+  class cl_main definition final.
+    public section.
+      methods start importing value(vv_dest) type rfcdest value(vv_break) type xfeld value(vv_type) type xfeld value(vv_query) type xfeld raising zcx_srqltype zcx_srqlquery.
+    private section.
+      methods demo_typing importing value(vv_dest) type rfcdest value(vv_break) type xfeld raising zcx_srqltype.
+      methods demo_querying importing value(vv_dest) type rfcdest value(vv_break) type xfeld raising zcx_srqltype zcx_srqlquery.
+  endclass.
+
+  class cl_main implementation.
+
+    method start.
+*     remote typing
+      if vv_type eq &apos;X&apos;. me-&gt;demo_typing( vv_dest = vv_dest vv_break = vv_break ). endif.
+*     remote querying
+      if vv_query eq &apos;X&apos;. me-&gt;demo_querying( vv_dest = vv_dest vv_break = vv_break ). endif.
+    endmethod.
+
+    method demo_typing.
+
+*     declarations
+      data: lo_dele type ref to data,
+            lo_stru type ref to data,
+            lo_scut type ref to data,
+            lo_itab type ref to data,
+            lo_icut type ref to data,
+            lt_flds type fieldname_tab,
+            lv_par  type symsgv.
+
+*     symbols definition
+      field-symbols: &lt;lv_dele&gt; type any,
+                     &lt;ls_stru&gt; type any,
+                     &lt;ls_scut&gt; type any,
+                     &lt;lt_itab&gt; type standard table,
+                     &lt;lt_icut&gt; type standard table.
+
+*     EXAMPLE 1: &lt;lv_dele&gt; built as remote data element mandt and valued as local client
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build remote data element
+      lo_dele = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;data_element typename = &apos;MANDT&apos; )-&gt;get_data( ).
+      assign lo_dele-&gt;* to &lt;lv_dele&gt;.
+*     assign value
+      &lt;lv_dele&gt; = sy-mandt.
+
+*     EXAMPLE 2: &lt;ls_stru&gt; built as remote structure bapiret2 and valued using standard module balw_bapireturn_get2
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build remote structure
+      lo_stru = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;structure typename = &apos;BAPIRET2&apos; )-&gt;get_data( ).
+      assign lo_stru-&gt;* to &lt;ls_stru&gt;.
+*     assign value
+      lv_par = vv_dest. call function &apos;BALW_BAPIRETURN_GET2&apos; exporting type = &apos;S&apos; cl = &apos;ZSRQL&apos; number = &apos;015&apos; par1 = &apos;BAPIRET2&apos; par2 = lv_par importing return = &lt;ls_stru&gt;.
+
+*     EXAMPLE 3: &lt;lt_itab&gt; built as an internal table with line defined as remote structure bapiret2 (previous &lt;ls_stru&gt; line has been appended)
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build remote internal table
+      lo_itab = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;table_type typename = &apos;BAPIRET2&apos; )-&gt;get_data( ).
+      assign lo_itab-&gt;* to &lt;lt_itab&gt;.
+*     add line
+      append &lt;ls_stru&gt; to &lt;lt_itab&gt;.
+
+*     EXAMPLE 4: &lt;ls_scut&gt; built as a subset of fields (id, number, message) defined on a remote structure bapiret2 and valued moving corresponding fields from previous structure
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build remote structure (only some fields)
+      append &apos;TYPE&apos; to lt_flds. append &apos;ID&apos; to lt_flds. append &apos;NUMBER&apos; to lt_flds. append &apos;MESSAGE&apos; to lt_flds.
+      lo_scut = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;structure typename = &apos;BAPIRET2&apos; typefields = lt_flds )-&gt;get_data( ).
+      assign lo_scut-&gt;* to &lt;ls_scut&gt;.
+*     assign values
+      move-corresponding &lt;ls_stru&gt; to &lt;ls_scut&gt;.
+
+*     EXAMPLE 5: &lt;lt_icut&gt; built as internal table with line defined as a subset of fields (id, number, message) of remote structure bapiret2 (previous &lt;ls_scut&gt; line has been appended)
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build remote internal table (only some fields)
+      lo_icut = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;table_type typename = &apos;BAPIRET2&apos; typefields = lt_flds )-&gt;get_data( ).
+      assign lo_icut-&gt;* to &lt;lt_icut&gt;.
+*     add line
+      append &lt;ls_scut&gt; to &lt;lt_icut&gt;.
+
+    endmethod.
+
+    method demo_querying.
+
+*     data declaration
+      data: lo_srql       type ref to zcl_srqlquery,
+            lo_t006d      type ref to zcl_srqlquery,
+            lo_t006t      type ref to zcl_srqlquery,
+            lo_t006d_data type ref to data,
+            lo_t006t_data type ref to data,
+            lo_dims_data  type ref to data,
+            lo_dimt_data  type ref to data,
+            lt_fld        type fieldname_tab,
+            lt_query      type standard table of zsrqlsoquery_s,
+            ##NEEDED
+            lt_data1      type standard table of zsrqlt000demo_s,
+            ##NEEDED
+            lt_data2      type standard table of zsrqlt000demo_s,
+            ls_query      type zsrqlsoquery_s.
+
+*     symbols definition
+      field-symbols: &lt;lt_t006d&gt; type standard table,
+                     &lt;lt_t006t&gt; type standard table,
+                     &lt;lt_dim&gt; type standard table,
+                     &lt;ls_t006d&gt; type any,
+                     &lt;ls_t006t&gt; type any,
+                     &lt;ls_line&gt; type any,
+                     &lt;lt_text&gt; type standard table,
+                     &lt;ls_dim&gt;  type any,
+                     &lt;lv_dim1&gt; type any,
+                     &lt;lv_dim2&gt; type any.
+
+*     EXAMPLE 1: remote t000 query with field filters
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     code
+      lo_srql = zcl_srqlquery=&gt;new( destination = vv_dest table = &apos;T000&apos; ).
+      lo_srql-&gt;prepare_result( ddic_structure = &apos;ZSRQLT000DEMO_S&apos; ).
+      lo_srql-&gt;execute( ).
+      lo_srql-&gt;get_result( importing result = lt_data1 ).
+
+*     EXAMPLE 2: remote t000 query with field filter based on field list and result assigned to local structure (with these fields)
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     code
+      refresh: lt_fld. append: &apos;MANDT&apos; to lt_fld, &apos;MTEXT&apos; to lt_fld, &apos;ORT01&apos; to lt_fld, &apos;CHANGEUSER&apos; to lt_fld.
+      lo_srql = zcl_srqlquery=&gt;new( destination = vv_dest table = &apos;T000&apos; ).
+      lo_srql-&gt;prepare_result( fields = lt_fld ).
+      lo_srql-&gt;execute( ).
+      lo_srql-&gt;get_result( importing result = lt_data2 ).
+
+*     EXAMPLE 3: remote query on t006d and t006t with result remapping on dynamic built structures/internal tables
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build dynamic structure &lt;ls_dim&gt; and internal table &lt;lt_dim&gt; with line zsrqldimdemo_s (built from local defined so that you can test: no destination passed in method new)
+      lo_dims_data = zcl_srqltype=&gt;new( typename = &apos;ZSRQLDIMDEMO_S&apos; typekind = zif_srqltypekind=&gt;structure )-&gt;get_data( ).
+      lo_dimt_data = zcl_srqltype=&gt;new( typename = &apos;ZSRQLDIMDEMO_S&apos; typekind = zif_srqltypekind=&gt;table_type )-&gt;get_data( ).
+      assign: lo_dims_data-&gt;* to &lt;ls_dim&gt;, lo_dimt_data-&gt;* to &lt;lt_dim&gt;.
+
+*     specify query logical clause as select option (ask for length and mass)
+      ls_query-fieldname = &apos;DIMID&apos;.
+      ls_query-sign      = &apos;I&apos;.
+      ls_query-option    = &apos;EQ&apos;.
+      ls_query-low       = &apos;MASS&apos;.
+      append ls_query to lt_query.
+      ls_query-low       = &apos;LENGTH&apos;.
+      append ls_query to lt_query.
+
+*     prepare &amp; execute remote t006d query
+      lo_t006d = zcl_srqlquery=&gt;new( destination = vv_dest table = &apos;T006D&apos; ).
+      lo_t006d-&gt;prepare_statement( select_option = lt_query ).
+      lo_t006d-&gt;execute( ).
+      lo_t006d_data = lo_t006d-&gt;get_result_data( ). assign lo_t006d_data-&gt;* to &lt;lt_t006d&gt;.
+
+*     specify query logical clause as select-option (ask for french, english and italian)
+      ls_query-fieldname = &apos;SPRAS&apos;.
+      ls_query-low       = &apos;F&apos;.
+      append ls_query to lt_query.
+      ls_query-low       = &apos;E&apos;.
+      append ls_query to lt_query.
+      ls_query-low       = &apos;I&apos;.
+      append ls_query to lt_query.
+
+*     prepare &amp; execute remote t006t query
+      lo_t006t = zcl_srqlquery=&gt;new( destination = &apos;RISCLNT001&apos; table = &apos;T006T&apos; ).
+      lo_t006t-&gt;prepare_statement( select_option = lt_query ).
+      lo_t006t-&gt;execute( ).
+      lo_t006t_data = lo_t006t-&gt;get_result_data( ). assign lo_t006t_data-&gt;* to &lt;lt_t006t&gt;.
+
+*     remap in result
+      loop at &lt;lt_t006d&gt; assigning &lt;ls_t006d&gt;.
+*       set header
+        assign component &apos;DIMENSION&apos; of structure &lt;ls_dim&gt; to &lt;ls_line&gt;. &lt;ls_line&gt; = &lt;ls_t006d&gt;.
+*       get my items
+        assign component &apos;TEXT&apos; of structure &lt;ls_dim&gt; to &lt;lt_text&gt;.
+*       get header dimension to check
+        assign component &apos;DIMID&apos; of structure &lt;ls_line&gt; to &lt;lv_dim1&gt;.
+*       search for my dimension text
+        loop at &lt;lt_t006t&gt; assigning &lt;ls_t006t&gt;.
+          assign component &apos;DIMID&apos; of structure &lt;ls_t006t&gt; to &lt;lv_dim2&gt;.
+          if &lt;lv_dim1&gt; eq &lt;lv_dim2&gt;. append &lt;ls_t006t&gt; to &lt;lt_text&gt;. endif.
+        endloop.
+        append &lt;ls_dim&gt; to &lt;lt_dim&gt;.
+        refresh: &lt;lt_text&gt;. clear: &lt;ls_dim&gt;.
+      endloop.
+
+    endmethod.
+
+  endclass.
+
+* gui definition
+  selection-screen begin of block bl1 with frame title text-001.
+
+    parameters: p_dest  type rfcdest obligatory,
+                p_break type xfeld default &apos;X&apos;.
+
+  selection-screen end of block bl1.
+
+  selection-screen begin of block bl2 with frame title text-002.
+
+    parameters: p_type  type xfeld radiobutton group gr1 default &apos;X&apos;,
+                p_query type xfeld radiobutton group gr1.
+
+  selection-screen end of block bl2.
+
+start-of-selection.
+
+  ##NEEDED
+  data: lx_root type ref to cx_root,
+        lo_main type ref to cl_main,
+        lv_mess type string.
+
+  try.
+      create object lo_main.
+      lo_main-&gt;start( vv_dest = p_dest vv_break = p_break vv_type = p_type vv_query = p_query ).
+  catch cx_sy_create_object_error zcx_srqltype into lx_root.
+    lv_mess = lx_root-&gt;get_text( ). write: / lv_mess.
+  endtry.</source>
+ </PROG>
+ <TABL TABNAME="ZSRQLSOQUERY_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Query as Select Option" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZSRQLSOQUERY_S" FIELDNAME="FIELDNAME" DDLANGUAGE="E" POSITION="0001" ROLLNAME="FIELDNAME" ADMINFIELD="0" INTTYPE="C" INTLEN="000060" DOMNAME="FDNAME" ROUTPUTLEN="000000" MEMORYID="DFD" HEADLEN="10" SCRLEN1="10" SCRLEN2="15" SCRLEN3="18" DTELMASTER="D" DATATYPE="CHAR" LENG="000030" OUTPUTLEN="000030" DECIMALS="000000" ENTITYTAB="DD03L" MASK="  CHARE" MASKLEN="0000" DDTEXT="Field Name" REPTEXT="Field Name" SCRTEXT_S="Field" SCRTEXT_M="Field Name" SCRTEXT_L="Field Name" DOMNAME3L="FDNAME" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLSOQUERY_S" FIELDNAME="SIGN" DDLANGUAGE="E" POSITION="0002" ROLLNAME="TVARV_SIGN" ADMINFIELD="0" INTTYPE="C" INTLEN="000002" DOMNAME="SYCHAR01" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="CHAR" LENG="000001" OUTPUTLEN="000001" DECIMALS="000000" MASK="  CHARE" MASKLEN="0000" DDTEXT="ABAP: ID: I/E (include/exclude values)" REPTEXT="INCL/EXCL" SCRTEXT_S="INCL/EXCL" SCRTEXT_M="INCL/EXCL" SCRTEXT_L="INCL/EXCL" DOMNAME3L="SYCHAR01" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLSOQUERY_S" FIELDNAME="OPTION" DDLANGUAGE="E" POSITION="0003" ROLLNAME="TVARV_OPTI" ADMINFIELD="0" INTTYPE="C" INTLEN="000004" DOMNAME="SYCHAR02" ROUTPUTLEN="000000" HEADLEN="55" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CHAR" LENG="000002" OUTPUTLEN="000002" DECIMALS="000000" MASK="  CHARE" MASKLEN="0000" DDTEXT="ABAP: Selection option (EQ/BT/CP/...)" REPTEXT="Option" SCRTEXT_S="Option" SCRTEXT_M="Option" SCRTEXT_L="Option" DOMNAME3L="SYCHAR02" DEPTH="00" COMPTYPE="E" DEFFDNAME="OPTION" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLSOQUERY_S" FIELDNAME="LOW" DDLANGUAGE="E" POSITION="0004" ROLLNAME="TEXT1024" ADMINFIELD="0" INTTYPE="C" INTLEN="002048" DOMNAME="TEXTA1024" ROUTPUTLEN="000000" HEADLEN="00" SCRLEN1="00" SCRLEN2="00" SCRLEN3="00" DTELMASTER="D" DATATYPE="CHAR" LENG="001024" OUTPUTLEN="001024" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Case-Sensitive Length 1024" DOMNAME3L="TEXTA1024" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLSOQUERY_S" FIELDNAME="HIGH" DDLANGUAGE="E" POSITION="0005" ROLLNAME="TEXT1024" ADMINFIELD="0" INTTYPE="C" INTLEN="002048" DOMNAME="TEXTA1024" ROUTPUTLEN="000000" HEADLEN="00" SCRLEN1="00" SCRLEN2="00" SCRLEN3="00" DTELMASTER="D" DATATYPE="CHAR" LENG="001024" OUTPUTLEN="001024" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Case-Sensitive Length 1024" DOMNAME3L="TEXTA1024" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+ </TABL>
+ <TABL TABNAME="ZSRQLT000DEMO_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Demo DDIC Structure" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="MANDT" DDLANGUAGE="E" POSITION="0001" ROLLNAME="MANDT" ADMINFIELD="0" INTTYPE="C" INTLEN="000006" DOMNAME="MANDT" ROUTPUTLEN="000000" HEADLEN="03" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CLNT" LENG="000003" OUTPUTLEN="000003" DECIMALS="000000" ENTITYTAB="T000" MASK="  CLNTE" MASKLEN="0000" DDTEXT="Client" REPTEXT="Cl." SCRTEXT_S="Client" SCRTEXT_M="Client" SCRTEXT_L="Client" DOMNAME3L="MANDT" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="MTEXT" DDLANGUAGE="E" POSITION="0002" ROLLNAME="MTEXT_D" ADMINFIELD="0" INTTYPE="C" INTLEN="000050" DOMNAME="TEXT25" ROUTPUTLEN="000000" HEADLEN="25" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="CHAR" LENG="000025" OUTPUTLEN="000025" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Client name" REPTEXT="Name" SCRTEXT_S="Name" SCRTEXT_M="Name" SCRTEXT_L="Name" DOMNAME3L="TEXT25" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="ORT01" DDLANGUAGE="E" POSITION="0003" ROLLNAME="ORT01" ADMINFIELD="0" INTTYPE="C" INTLEN="000050" DOMNAME="TEXT25" ROUTPUTLEN="000000" LOGFLAG="X" HEADLEN="25" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" RESERVEDTE="D" DATATYPE="CHAR" LENG="000025" OUTPUTLEN="000025" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="City" REPTEXT="City" SCRTEXT_S="City" SCRTEXT_M="City" SCRTEXT_L="City" DOMNAME3L="TEXT25" DEPTH="00" COMPTYPE="E" DEFFDNAME="CITY" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="CHANGEUSER" DDLANGUAGE="E" POSITION="0004" ROLLNAME="AS4USER" ADMINFIELD="0" INTTYPE="C" INTLEN="000024" DOMNAME="AS4USER" ROUTPUTLEN="000000" HEADLEN="12" SCRLEN1="00" SCRLEN2="18" SCRLEN3="20" DATATYPE="CHAR" LENG="000012" OUTPUTLEN="000012" DECIMALS="000000" MASK="  CHARE" MASKLEN="0000" DDTEXT="Last Changed by" REPTEXT="Author" SCRTEXT_M="Last Changed By" SCRTEXT_L="Last Changed By" DOMNAME3L="AS4USER" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+ </TABL>
+ <TABL TABNAME="ZSRQLTIMESTAMP_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Query Result Timestamp" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZSRQLTIMESTAMP_S" FIELDNAME="DATE" DDLANGUAGE="E" POSITION="0001" ROLLNAME="SYDATUM" ADMINFIELD="0" INTTYPE="D" INTLEN="000016" DOMNAME="SYDATS" ROUTPUTLEN="000000" HEADLEN="08" SCRLEN1="10" SCRLEN2="20" SCRLEN3="20" DTELMASTER="D" DATATYPE="DATS" LENG="000008" OUTPUTLEN="000010" DECIMALS="000000" MASK="  DATSE" MASKLEN="0000" DDTEXT="Current Date of Application Server" REPTEXT="Date" SCRTEXT_S="Date" SCRTEXT_M="Current Date" SCRTEXT_L="Current Date" DOMNAME3L="SYDATS" SHLPORIGIN="T" DEPTH="00" COMPTYPE="E" DEFFDNAME="DATE" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLTIMESTAMP_S" FIELDNAME="TIME" DDLANGUAGE="E" POSITION="0002" ROLLNAME="SYUZEIT" ADMINFIELD="0" INTTYPE="T" INTLEN="000012" DOMNAME="SYTIME" ROUTPUTLEN="000000" HEADLEN="06" SCRLEN1="10" SCRLEN2="10" SCRLEN3="10" DTELMASTER="D" DATATYPE="TIMS" LENG="000006" OUTPUTLEN="000008" DECIMALS="000000" MASK="  TIMSE" MASKLEN="0000" DDTEXT="Current Time of Application Server" REPTEXT="Time" SCRTEXT_S="Time" SCRTEXT_M="Time" SCRTEXT_L="Time" DOMNAME3L="SYTIME" SHLPORIGIN="T" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+ </TABL>
+ <TABL TABNAME="ZSRQLDIMDEMO_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Dimesnions" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="DIMENSION" DDLANGUAGE="E" POSITION="0001" ROLLNAME="T006D" ADMINFIELD="0" INTLEN="000000" ROUTPUTLEN="000000" HEADLEN="00" SCRLEN1="00" SCRLEN2="00" SCRLEN3="00" DATATYPE="STRU" LENG="000000" OUTPUTLEN="000000" DECIMALS="000000" MASK="  STRUS" MASKLEN="0000" DDTEXT="Dimensions" DEPTH="00" COMPTYPE="S" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="MANDT" DDLANGUAGE="E" POSITION="0002" ROLLNAME="MANDT" ADMINFIELD="0" INTTYPE="C" INTLEN="000006" DOMNAME="MANDT" ROUTPUTLEN="000000" HEADLEN="03" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CLNT" LENG="000003" OUTPUTLEN="000003" DECIMALS="000000" ENTITYTAB="T000" MASK="  CLNTE" MASKLEN="0000" DDTEXT="Client" REPTEXT="Cl." SCRTEXT_S="Client" SCRTEXT_M="Client" SCRTEXT_L="Client" DOMNAME3L="MANDT" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="DIMID" DDLANGUAGE="E" POSITION="0003" ROLLNAME="DIMID" ADMINFIELD="0" INTTYPE="C" INTLEN="000012" DOMNAME="DIMID" ROUTPUTLEN="000000" HEADLEN="06" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="CHAR" LENG="000006" OUTPUTLEN="000006" DECIMALS="000000" ENTITYTAB="T006D" MASK="  CHARE" MASKLEN="0000" DDTEXT="Dimension key" REPTEXT="Dimen." SCRTEXT_S="Dimension" SCRTEXT_M="Dimension" SCRTEXT_L="Dimension" DOMNAME3L="DIMID" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="LENG" DDLANGUAGE="E" POSITION="0004" ROLLNAME="LENG" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Length exponent" REPTEXT="Len." SCRTEXT_S="Length" SCRTEXT_M="Length" SCRTEXT_L="Length" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="MASS" DDLANGUAGE="E" POSITION="0005" ROLLNAME="MASS" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Mass exponent" REPTEXT="Mass" SCRTEXT_S="Mass" SCRTEXT_M="Mass" SCRTEXT_L="Mass" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="TIMEX" DDLANGUAGE="E" POSITION="0006" ROLLNAME="TIMEX" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Current exponent" REPTEXT="Time" SCRTEXT_S="Time" SCRTEXT_M="Time" SCRTEXT_L="Time" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="ECURR" DDLANGUAGE="E" POSITION="0007" ROLLNAME="ECURR" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Electric current exponent" REPTEXT="Curr" SCRTEXT_S="Current" SCRTEXT_M="Current" SCRTEXT_L="elec. current" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="TEMP" DDLANGUAGE="E" POSITION="0008" ROLLNAME="TEMP" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Temperature exponent" REPTEXT="Temp" SCRTEXT_S="Temp." SCRTEXT_M="Temperature" SCRTEXT_L="Temperature" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="MOLQU" DDLANGUAGE="E" POSITION="0009" ROLLNAME="MOLQU" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Mole quantity exponent" REPTEXT="Mole" SCRTEXT_S="Mole qty" SCRTEXT_M="Mole quantity" SCRTEXT_L="Mole quantity" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="LIGHT" DDLANGUAGE="E" POSITION="0010" ROLLNAME="LIGHT" ADMINFIELD="0" INTTYPE="X" INTLEN="000002" DOMNAME="DIMEX" ROUTPUTLEN="000000" HEADLEN="04" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="INT2" LENG="000005" OUTPUTLEN="000004" DECIMALS="000000" SIGNFLAG="X" MASK="  INT2E" MASKLEN="0000" DDTEXT="Luminosity exponent" REPTEXT="Lght" SCRTEXT_S="Light" SCRTEXT_M="Luminosity" SCRTEXT_L="Luminous intensity" DOMNAME3L="DIMEX" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="MSSIE" DDLANGUAGE="E" POSITION="0011" ROLLNAME="MSSIE" ADMINFIELD="0" INTTYPE="C" INTLEN="000006" DOMNAME="MEINS" ROUTPUTLEN="000000" HEADLEN="03" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="UNIT" LENG="000003" OUTPUTLEN="000003" DECIMALS="000000" LOWERCASE="X" ENTITYTAB="T006" CONVEXIT="CUNIT" MASK="  UNITE" MASKLEN="0000" DDTEXT="SI unit" REPTEXT="SI" SCRTEXT_S="SI unit" SCRTEXT_M="SI unit" SCRTEXT_L="SI unit" DOMNAME3L="MEINS" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="TEMP_DEP" DDLANGUAGE="E" POSITION="0012" ROLLNAME="TEMP_DEP" ADMINFIELD="0" INTTYPE="C" INTLEN="000002" DOMNAME="X" ROUTPUTLEN="000000" HEADLEN="05" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CHAR" LENG="000001" OUTPUTLEN="000001" DECIMALS="000000" VALEXI="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Indicator: Dimension has Unit with Temperature Specification" REPTEXT="TmDep" SCRTEXT_S="Temp.-Dep." SCRTEXT_M="Temp.-Depend." SCRTEXT_L="Temperature-Depend." DOMNAME3L="X" SHLPORIGIN="F" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="PRESS_DEP" DDLANGUAGE="E" POSITION="0013" ROLLNAME="PRESS_DEP" ADMINFIELD="0" INTTYPE="C" INTLEN="000002" DOMNAME="X" ROUTPUTLEN="000000" HEADLEN="05" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CHAR" LENG="000001" OUTPUTLEN="000001" DECIMALS="000000" VALEXI="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Indicator: Dimension has Units with Pressure Specification" REPTEXT="PrDep" SCRTEXT_S="Press.Dep." SCRTEXT_M="Pressure-Dep." SCRTEXT_L="Pressure-Dependent" DOMNAME3L="X" SHLPORIGIN="F" DEPTH="01" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLDIMDEMO_S" FIELDNAME="TEXT" DDLANGUAGE="E" POSITION="0014" ROLLNAME="ZSRQLT006T_TT" ADMINFIELD="0" INTLEN="000000" ROUTPUTLEN="000000" HEADLEN="00" SCRLEN1="00" SCRLEN2="00" SCRLEN3="00" DATATYPE="TTYP" LENG="000000" OUTPUTLEN="000000" DECIMALS="000000" MASK="  TTYPL" MASKLEN="0000" DDTEXT="Dimension Text" DEPTH="00" COMPTYPE="L" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+ </TABL>
+ <TTYP TYPENAME="ZSRQLRFCDBOPT_TT" DDLANGUAGE="E" ROWTYPE="RFC_DB_OPT" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Query as Table" TYPELEN="000144" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
+ <TTYP TYPENAME="ZSRQLSOQUERY_TT" DDLANGUAGE="E" ROWTYPE="ZSRQLSOQUERY_S" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Query as Select Option" TYPELEN="004162" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
+ <TTYP TYPENAME="ZSRQLT006T_TT" DDLANGUAGE="E" ROWTYPE="T006T" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Dimension Text" TYPELEN="000060" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
+</nugget>
