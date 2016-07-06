@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nugget name="ZSRQL">
+<nugget name="DYNS">
  <CLAS CLSNAME="ZCL_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="Query" CATEGORY="00" EXPOSURE="0" STATE="1" RELEASE="0" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
   <localImplementation>*&quot;* use this source file for the definition and implementation of
 *&quot;* local helper classes, interface definitions and type
@@ -548,7 +548,9 @@ endmethod.</source>
 *&quot;* components in the private section</localTypes>
   <localMacros>*&quot;* use this source file for any macro definitions you need
 *&quot;* in the implementation part of the class</localMacros>
-  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRUKNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="FIELDNAME" VERSION="1" LANGU="E" DESCRIPT="Field Name" EXPOSURE="2" STATE="1" EDITORDER="11 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="FIELDTO" VERSION="1" LANGU="E" DESCRIPT="Field Name" EXPOSURE="2" STATE="1" EDITORDER="12 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="FIELDNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="STRUCTURE" VERSION="1" LANGU="E" DESCRIPT="Name of a structure" EXPOSURE="2" STATE="1" EDITORDER="10 " ATTDECLTYP="0" ATTEXPVIRT="0" TYPTYPE="1" TYPE="STRUKNAME" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
   <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="21 " SRCCOLUMN1="4 " SRCROW2="28 " SRCCOLUMN2="22 " LOCKED="X" TYPESRC_LENG="293 " TYPESRC="begin of ZCX_SRQLTYPE,
       msgid type symsgid value &apos;ZSRQL&apos;,
       msgno type symsgno value &apos;000&apos;,
@@ -594,6 +596,24 @@ endmethod.</source>
       attr4 type scx_attrname value &apos;&apos;,
     end of ZCX_SRQLTYPE_ELEMENT
 "/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_FIELD" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="8 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="75 " SRCCOLUMN1="4 " SRCROW2="82 " SRCCOLUMN2="28 " LOCKED="X" TYPESRC_LENG="314 " TYPESRC="begin of ZCX_SRQLTYPE_FIELD,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;016&apos;,
+      attr1 type scx_attrname value &apos;FIELDNAME&apos;,
+      attr2 type scx_attrname value &apos;&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_FIELD
+"/>
+  <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_FIELD_MOVE" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="9 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="84 " SRCCOLUMN1="4 " SRCROW2="91 " SRCCOLUMN2="33 " LOCKED="X" TYPESRC_LENG="331 " TYPESRC="begin of ZCX_SRQLTYPE_FIELD_MOVE,
+      msgid type symsgid value &apos;ZSRQL&apos;,
+      msgno type symsgno value &apos;017&apos;,
+      attr1 type scx_attrname value &apos;FIELDNAME&apos;,
+      attr2 type scx_attrname value &apos;FIELDTO&apos;,
+      attr3 type scx_attrname value &apos;&apos;,
+      attr4 type scx_attrname value &apos;&apos;,
+    end of ZCX_SRQLTYPE_FIELD_MOVE
+"/>
   <attribute CLSNAME="ZCX_SRQLTYPE" CMPNAME="ZCX_SRQLTYPE_KIND" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="3 " ATTDECLTYP="2" ATTEXPVIRT="0" TYPTYPE="4" SRCROW1="30 " SRCCOLUMN1="4 " SRCROW2="37 " SRCCOLUMN2="27 " LOCKED="X" TYPESRC_LENG="303 " TYPESRC="begin of ZCX_SRQLTYPE_KIND,
       msgid type symsgid value &apos;ZSRQL&apos;,
       msgno type symsgno value &apos;009&apos;,
@@ -613,6 +633,221 @@ endmethod.</source>
     end of ZCX_SRQLTYPE_NAME
 "/>
   <inheritance CLSNAME="ZCX_SRQLTYPE" REFCLSNAME="CX_STATIC_CHECK" VERSION="1" STATE="1"/>
+ </CLAS>
+ <CLAS CLSNAME="ZCL_SRQLUTIL" VERSION="1" LANGU="E" DESCRIPT="Utilities" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 ">
+  <localImplementation>*&quot;* use this source file for the definition and implementation of
+*&quot;* local helper classes, interface definitions and type
+*&quot;* declarations</localImplementation>
+  <localTypes>*&quot;* use this source file for any type of declarations (class
+*&quot;* definitions, interfaces or type declarations) you need for
+*&quot;* components in the private section</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <method CLSNAME="ZCL_SRQLUTIL" CMPNAME="GET_FIELD" VERSION="1" LANGU="E" DESCRIPT="Get Field Value" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="GET_FIELD" SCONAME="LINE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="GET_FIELD" SCONAME="FIELDNAME" VERSION="1" LANGU="E" DESCRIPT="Field Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="GET_FIELD" SCONAME="VALUE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_SRQLUTIL" CMPNAME="GET_FIELD" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method get_field.
+
+  data: lx_root type ref to cx_root.
+
+  field-symbols: &lt;lv_field&gt; type any.
+
+  try.
+
+*     get field
+      assign component fieldname of structure line to &lt;lv_field&gt;.
+      if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_field fieldname = fieldname. endif.
+
+*     return value
+      value = &lt;lv_field&gt;.
+
+    catch cx_sy_assign_cast_illegal_cast cx_sy_assign_cast_unknown_type cx_sy_assign_out_of_range into lx_root.
+
+      raise exception type zcx_srqltype
+        exporting
+          textid    = zcx_srqltype=&gt;zcx_srqltype_field
+          previous  = lx_root
+          fieldname = fieldname.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_CORRESPONDING" VERSION="1" LANGU="E" DESCRIPT="Move Corresponding Fields" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_CORRESPONDING" SCONAME="LINEFROM" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_CORRESPONDING" SCONAME="MOVED" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_CORRESPONDING" SCONAME="LINETO" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_CORRESPONDING" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method move_corresponding.
+
+  data: lx_root   type ref to cx_root,
+        lo_struc1 type ref to cl_abap_structdescr,
+        lo_struc2 type ref to cl_abap_structdescr,
+        lt_comp1  type cl_abap_structdescr=&gt;component_table,
+        lt_comp2  type cl_abap_structdescr=&gt;component_table,
+        ls_comp1  type cl_abap_structdescr=&gt;component,
+        ls_comp2  type cl_abap_structdescr=&gt;component,
+        lv_from   type fieldname,
+        lv_to     type fieldname.
+
+  field-symbols: &lt;lv_field1&gt; type any,
+                 &lt;lv_field2&gt; type any.
+
+* describe local structure
+  lo_struc1 ?= cl_abap_structdescr=&gt;describe_by_data( linefrom ).
+  lo_struc2 ?= cl_abap_structdescr=&gt;describe_by_data( lineto ).
+
+* get local structure components
+  lt_comp1 = lo_struc1-&gt;get_components( ).
+  lt_comp2 = lo_struc2-&gt;get_components( ).
+
+  try.
+
+*     map components
+      loop at lt_comp1 into ls_comp1.
+*       unassign 4 loop
+        if &lt;lv_field1&gt; is assigned. unassign &lt;lv_field1&gt;. endif.
+        if &lt;lv_field2&gt; is assigned. unassign &lt;lv_field2&gt;. endif.
+*       get corresponding field
+        read table lt_comp2 into ls_comp2 with key name = ls_comp1-name.
+        if sy-subrc ne 0. continue. endif.
+*       get fields
+        assign component: ls_comp1-name of structure linefrom to &lt;lv_field1&gt;, ls_comp2-name of structure lineto   to &lt;lv_field2&gt;.
+        if not ( &lt;lv_field2&gt; is assigned and &lt;lv_field1&gt; is assigned ). continue. endif.
+*       move field value
+        &lt;lv_field2&gt; = &lt;lv_field1&gt;.
+        add 1 to moved.
+      endloop.
+
+    catch cx_sy_assign_cast_illegal_cast cx_sy_assign_cast_unknown_type cx_sy_assign_out_of_range into lx_root.
+
+      lv_from = ls_comp1-name. lv_to = ls_comp2-name.
+
+      raise exception type zcx_srqltype
+        exporting
+          textid    = zcx_srqltype=&gt;zcx_srqltype_field_move
+          previous  = lx_root
+          fieldname = lv_from
+          fieldto   = lv_to.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" VERSION="1" LANGU="E" DESCRIPT="Move Single Field" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" SCONAME="LINEFROM" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" SCONAME="FIELDFROM" VERSION="1" LANGU="E" DESCRIPT="Field Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" SCONAME="FIELDTO" VERSION="1" LANGU="E" DESCRIPT="Field Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" SCONAME="LINETO" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_FIELD" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method move_field.
+
+  data: lx_root type ref to cx_root.
+
+  field-symbols: &lt;lv_from&gt; type any,
+                 &lt;lv_to&gt;   type any.
+
+  try.
+
+*     get field from
+      assign component fieldfrom of structure linefrom to &lt;lv_from&gt;.
+      if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_field fieldname = fieldfrom. endif.
+
+*     get field to
+      assign component fieldto of structure lineto to &lt;lv_to&gt;.
+      if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_field fieldname = fieldto. endif.
+
+*     set value
+      &lt;lv_to&gt; = &lt;lv_from&gt;.
+
+    catch cx_sy_assign_cast_illegal_cast cx_sy_assign_cast_unknown_type cx_sy_assign_out_of_range into lx_root.
+
+      raise exception type zcx_srqltype
+        exporting
+          textid    = zcx_srqltype=&gt;zcx_srqltype_field_move
+          previous  = lx_root
+          fieldname = fieldfrom
+          fieldto   = fieldto.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" VERSION="1" LANGU="E" DESCRIPT="Move Corresponding Fields" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" SCONAME="LINEFROM" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" SCONAME="FIELDMAP" VERSION="1" LANGU="E" DESCRIPT="Field Mapping" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ZSRQLFIELDMAP_S_TT"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" SCONAME="MOVED" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" SCONAME="LINETO" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_SRQLUTIL" CMPNAME="MOVE_MAPPING" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method move_mapping.
+
+  data: lx_root type ref to cx_root,
+        ls_map  type zsrqlfieldmap_s.
+
+  field-symbols: &lt;lv_field1&gt; type any,
+                 &lt;lv_field2&gt; type any.
+
+  try.
+
+      loop at fieldmap into ls_map.
+*       unassign 4 loop.
+        if &lt;lv_field1&gt; is assigned. unassign &lt;lv_field1&gt;. endif.
+        if &lt;lv_field2&gt; is assigned. unassign &lt;lv_field2&gt;. endif.
+*       get fields
+        assign component: ls_map-fieldfrom of structure linefrom to &lt;lv_field1&gt;, ls_map-fieldto of structure lineto to &lt;lv_field2&gt;.
+        if not ( &lt;lv_field2&gt; is assigned and &lt;lv_field1&gt; is assigned ). continue. endif.
+*       move value
+        &lt;lv_field2&gt; = &lt;lv_field1&gt;.
+        add 1 to moved.
+      endloop.
+
+    catch cx_sy_assign_cast_illegal_cast cx_sy_assign_cast_unknown_type cx_sy_assign_out_of_range into lx_root.
+
+      raise exception type zcx_srqltype
+        exporting
+          textid    = zcx_srqltype=&gt;zcx_srqltype_field_move
+          previous  = lx_root
+          fieldname = ls_map-fieldfrom
+          fieldto   = ls_map-fieldto.
+
+  endtry.
+
+endmethod.</source>
+  </method>
+  <method CLSNAME="ZCL_SRQLUTIL" CMPNAME="SET_FIELD" VERSION="1" LANGU="E" DESCRIPT="Set Field Value" EXPOSURE="2" STATE="1" EDITORDER="0 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" MTDNEWEXC="X" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="SET_FIELD" SCONAME="FIELDNAME" VERSION="1" LANGU="E" DESCRIPT="Field Name" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="FIELDNAME"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="SET_FIELD" SCONAME="VALUE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="0" TYPTYPE="1" TYPE="ANY"/>
+   <parameter CLSNAME="ZCL_SRQLUTIL" CMPNAME="SET_FIELD" SCONAME="LINE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <exception CLSNAME="ZCL_SRQLUTIL" CMPNAME="SET_FIELD" SCONAME="ZCX_SRQLTYPE" VERSION="1" LANGU="E" DESCRIPT="Remote Typing Exception" MTDTYPE="0" EDITORDER="1 "/>
+   <source>method set_field.
+
+  data: lx_root type ref to cx_root.
+
+  field-symbols: &lt;lv_field&gt; type any.
+
+  try.
+
+*     get field
+      assign component fieldname of structure line to &lt;lv_field&gt;.
+      if sy-subrc ne 0. raise exception type zcx_srqltype exporting textid = zcx_srqltype=&gt;zcx_srqltype_field fieldname = fieldname. endif.
+
+*     set value
+      &lt;lv_field&gt; = value.
+
+    catch cx_sy_assign_cast_illegal_cast cx_sy_assign_cast_unknown_type cx_sy_assign_out_of_range into lx_root.
+
+      raise exception type zcx_srqltype
+        exporting
+          textid    = zcx_srqltype=&gt;zcx_srqltype_field
+          previous  = lx_root
+          fieldname = fieldname.
+
+  endtry.
+
+endmethod.</source>
+  </method>
  </CLAS>
  <CLAS CLSNAME="ZCX_SRQLQUERY" VERSION="1" LANGU="E" DESCRIPT="SRQL Exception" CATEGORY="40" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " REFCLSNAME="CX_STATIC_CHECK">
   <implementing CLSNAME="ZCX_SRQLQUERY" REFCLSNAME="IF_T100_MESSAGE" VERSION="1" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="0 "/>
@@ -1089,23 +1324,42 @@ endmethod.</source>
   <attribute CLSNAME="ZIF_SRQLCONJUNCTION" CMPNAME="OR" VERSION="1" LANGU="E" DESCRIPT="Logical Conjunction" EXPOSURE="2" STATE="1" EDITORDER="2 " ATTDECLTYP="2" ATTVALUE="&apos;OR&apos;" ATTEXPVIRT="0" TYPTYPE="1" TYPE="ZSRQLCONJUNCTION" SRCROW1="0 " SRCCOLUMN1="0 " SRCROW2="0 " SRCCOLUMN2="0 " TYPESRC_LENG="0 "/>
  </INTF>
  <MSAG ARBGB="ZSRQL" MASTERLANG="E" RESPUSER="BELLET">
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="000" TEXT="destinazione rfc specificata non valida"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="000" TEXT="invalid rfc destination specified"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="001" TEXT="no query su campo &amp;1: superiore a 512 caratteri oppure inesistente"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="001" TEXT="cannot query field &amp;1: length more than 512 characters or doesn&apos;t exist"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="002" TEXT="campo &amp;1 inesistente nella tabella &amp;2"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="002" TEXT="field &amp;1 doesn&apos;t exist on table &amp;2"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="003" TEXT="congiunzione logica specificata non valida"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="003" TEXT="invalid logical conjunction"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="004" TEXT="tabella specificata non valida"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="004" TEXT="invalid table specified"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="005" TEXT="query on table &amp;1 failed"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="005" TEXT="query fallita su tabella &amp;1"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="006" TEXT="invalid structure specified"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="006" TEXT="struttura specificata non valida"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="007" TEXT="structure &amp;1 without key fields of table &amp;2"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="007" TEXT="struttura &amp;1 priva dei campi chiave della tabella &amp;2"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="008" TEXT="result preparation failed"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="008" TEXT="preparazione risultato fallita"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="009" TEXT="invalid type kind"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="009" TEXT="genere di tipo non valido"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="010" TEXT="invalid type name"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="010" TEXT="nome tipo non valido"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="011" TEXT="failed to get components of structure/table &amp;1"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="011" TEXT="fallita lettura campi struttura/tabella &amp;1"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="012" TEXT="failed to build descriptor"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="012" TEXT="fallita generazione descrittore"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="013" TEXT="failed to create data"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="013" TEXT="fallita creazione tipo dato"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="014" TEXT="elements don&apos;t have offset, nor fields"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="014" TEXT="elementi privi di offset e campi"/>
   <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="015" TEXT="structure dnamically built as structure &amp;1 on destination &amp;2"/>
   <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="015" TEXT="struttura generata dinamicamente come &amp;1 deifinita su destinazione &amp;2"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="016" TEXT="field &amp;1 doesn&apos;t exist"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="016" TEXT="campo &amp;1 inesistente"/>
+  <t100 SPRSL="E" ARBGB="ZSRQL" MSGNR="017" TEXT="failed to move value from field &amp;1 in field &amp;2"/>
+  <t100 SPRSL="I" ARBGB="ZSRQL" MSGNR="017" TEXT="fallita copia valore da campo &amp;1 a campo &amp;2"/>
   <t100t SPRSL="E" ARBGB="ZSRQL"/>
  </MSAG>
  <PROG NAME="ZSRQLDEMO" VARCL="X" SUBC="1" RMAND="800" RLOAD="E" FIXPT="X" UCCHECK="X">
@@ -1116,6 +1370,7 @@ endmethod.</source>
     <textElement ID="R" ENTRY="Demo" LENGTH="4 "/>
     <textElement ID="S" KEY="P_BREAK" ENTRY="        Enable Break-Points" LENGTH="27 "/>
     <textElement ID="S" KEY="P_DEST" ENTRY="        Destination" LENGTH="19 "/>
+    <textElement ID="S" KEY="P_MACRO" ENTRY="        Macro" LENGTH="13 "/>
     <textElement ID="S" KEY="P_QUERY" ENTRY="        Querying" LENGTH="16 "/>
     <textElement ID="S" KEY="P_TYPE" ENTRY="        Dynamic Typing" LENGTH="22 "/>
    </language>
@@ -1125,6 +1380,7 @@ endmethod.</source>
     <textElement ID="R" ENTRY="Demo" LENGTH="70 "/>
     <textElement ID="S" KEY="P_BREAK" ENTRY="        Abilita Break-Point" LENGTH="27 "/>
     <textElement ID="S" KEY="P_DEST" ENTRY="        Destinazione" LENGTH="20 "/>
+    <textElement ID="S" KEY="P_MACRO" ENTRY="        Macro" LENGTH="13 "/>
     <textElement ID="S" KEY="P_QUERY" ENTRY="        Costruzione Query" LENGTH="25 "/>
     <textElement ID="S" KEY="P_TYPE" ENTRY="        Tipizzazione Dinamica" LENGTH="29 "/>
    </language>
@@ -1142,6 +1398,9 @@ report zsrqldemo.
 * PROGRAM SHOW HOW TO USE REMOTE TYPE BUILDER AND QUERY ENGINE, THERE&apos;S NO OUTPUT! YOU CAN ENABLE PRE-DEFINED EXAMPLE BREAKPOINTS
 * IN ORDER TO SEE HOW TYPES ARE BUILT AND HANDLED AND HOW QUERIES ARE PERFORMED OR YOU CAN SET YOUR OWN BREAKPOINTS.
 
+* include macros
+  include zsrql.
+
 * break-point macro definition
   define _break.
     ##NO_BREAK
@@ -1151,10 +1410,11 @@ report zsrqldemo.
 * MAIN program class definition
   class cl_main definition final.
     public section.
-      methods start importing value(vv_dest) type rfcdest value(vv_break) type xfeld value(vv_type) type xfeld value(vv_query) type xfeld raising zcx_srqltype zcx_srqlquery.
+      methods start importing value(vv_dest) type rfcdest value(vv_break) type xfeld value(vv_type) type xfeld value(vv_query) type xfeld value(vv_macro) type xfeld raising zcx_srqltype zcx_srqlquery.
     private section.
       methods demo_typing importing value(vv_dest) type rfcdest value(vv_break) type xfeld raising zcx_srqltype.
       methods demo_querying importing value(vv_dest) type rfcdest value(vv_break) type xfeld raising zcx_srqltype zcx_srqlquery.
+      methods demo_macro importing value(vv_dest) type rfcdest value(vv_break) type xfeld raising zcx_srqltype zcx_srqlquery.
   endclass.
 
   class cl_main implementation.
@@ -1164,12 +1424,17 @@ report zsrqldemo.
       if vv_type eq &apos;X&apos;. me-&gt;demo_typing( vv_dest = vv_dest vv_break = vv_break ). endif.
 *     remote querying
       if vv_query eq &apos;X&apos;. me-&gt;demo_querying( vv_dest = vv_dest vv_break = vv_break ). endif.
+*     macro
+      if vv_macro eq &apos;X&apos;. me-&gt;demo_macro( vv_dest = vv_dest vv_break = vv_break ). endif.
     endmethod.
 
     method demo_typing.
 
 *     declarations
-      data: lo_dele type ref to data,
+      data: lo_type type ref to zcl_srqltype,
+            lo_ele1 type ref to data,
+            lo_ele2 type ref to data,
+            lo_ele3 type ref to data,
             lo_stru type ref to data,
             lo_scut type ref to data,
             lo_itab type ref to data,
@@ -1178,7 +1443,9 @@ report zsrqldemo.
             lv_par  type symsgv.
 
 *     symbols definition
-      field-symbols: &lt;lv_dele&gt; type any,
+      field-symbols: &lt;lv_ele1&gt; type any,
+                     &lt;lv_ele2&gt; type any,
+                     &lt;lv_ele3&gt; type any,
                      &lt;ls_stru&gt; type any,
                      &lt;ls_scut&gt; type any,
                      &lt;lt_itab&gt; type standard table,
@@ -1187,11 +1454,21 @@ report zsrqldemo.
 *     EXAMPLE 1: &lt;lv_dele&gt; built as remote data element mandt and valued as local client
       if vv_break eq &apos;X&apos;. _break. endif.
 
-*     build remote data element
-      lo_dele = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;data_element typename = &apos;MANDT&apos; )-&gt;get_data( ).
-      assign lo_dele-&gt;* to &lt;lv_dele&gt;.
+*     build remote type descriptor (once build you can generate as more data as you want without keeping calling the backend)
+      lo_type = zcl_srqltype=&gt;new( destination = vv_dest typekind = zif_srqltypekind=&gt;data_element typename = &apos;MANDT&apos; ).
+
+*     build multiple data based on same descriptor
+      lo_ele1 = lo_type-&gt;get_data( ).
+      lo_ele2 = lo_type-&gt;get_data( ).
+      lo_ele3 = lo_type-&gt;get_data( ).
+
+*     to handle
+      assign: lo_ele1-&gt;* to &lt;lv_ele1&gt;, lo_ele2-&gt;* to &lt;lv_ele2&gt;, lo_ele3-&gt;* to &lt;lv_ele3&gt;.
+
 *     assign value
-      &lt;lv_dele&gt; = sy-mandt.
+      &lt;lv_ele1&gt; = sy-mandt.
+      &lt;lv_ele2&gt; = sy-mandt + 1.
+      &lt;lv_ele3&gt; = sy-mandt + 2.
 
 *     EXAMPLE 2: &lt;ls_stru&gt; built as remote structure bapiret2 and valued using standard module balw_bapireturn_get2
       if vv_break eq &apos;X&apos;. _break. endif.
@@ -1338,6 +1615,98 @@ report zsrqldemo.
 
     endmethod.
 
+    method demo_macro.
+
+      data: lo_de_logsys type ref to zcl_srqltype,
+            lo_ds_t000   type ref to zcl_srqltype,
+            lo_dt_t000   type ref to zcl_srqltype,
+            lo_element   type ref to data,
+            lo_line1     type ref to data,
+            lo_line2     type ref to data,
+            lo_itab      type ref to data,
+            lo_sys1      type ref to data,
+            lo_sys2      type ref to data,
+            lo_sys3      type ref to data,
+            lo_t000s     type ref to data,
+            lo_t000t     type ref to data,
+            lt_map       type zsrqlfieldmap_s_tt,
+            ls_map       type zsrqlfieldmap_s,
+            lv_par       type symsgv.
+
+      field-symbols: &lt;lv_ele&gt;   type any,
+                     &lt;lv_sys1&gt;  type any,
+                     &lt;lv_sys2&gt;  type any,
+                     &lt;lv_sys3&gt;  type any,
+                     &lt;ls_t000&gt;  type any,
+                     &lt;ls_line1&gt; type any,
+                     &lt;ls_line2&gt; type any,
+                     &lt;lt_t000&gt;  type standard table,
+                     &lt;lt_itab&gt;  type standard table.
+
+*     EXAMPLE 1: multiple data creation using descriptor
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build decsriptors (useful to avoid same backend call replicatin if many variables are needed related to same data type)
+      _srql_build-type-descriptor vv_dest: zif_srqltypekind=&gt;data_element &apos;LOGSYS&apos; lo_de_logsys, zif_srqltypekind=&gt;structure &apos;T000&apos; lo_ds_t000, zif_srqltypekind=&gt;table_type &apos;T000&apos; lo_dt_t000.
+*     build many data from same descriptor
+      _srql_build-from-descriptor lo_de_logsys: lo_sys1, lo_sys2, lo_sys3.
+      assign: lo_sys1-&gt;* to &lt;lv_sys1&gt;, lo_sys2-&gt;* to &lt;lv_sys2&gt;, lo_sys3-&gt;* to &lt;lv_sys3&gt;.
+*     build structure and internal table data for t000
+      _srql_build-from-descriptor: lo_ds_t000 lo_t000s, lo_dt_t000 lo_t000t.
+      assign: lo_t000s-&gt;* to &lt;ls_t000&gt;, lo_t000t-&gt;* to &lt;lt_t000&gt;.
+*     set values
+      &lt;lv_sys1&gt; = &apos;XKSCLNT100&apos;.
+      &lt;lv_sys2&gt; = &apos;XKTCLNT250&apos;.
+      &lt;lv_sys3&gt; = &apos;XKPCLNT800&apos;.
+*     move &amp; append some fields
+      select single * from t000 into corresponding fields of &lt;ls_t000&gt; where mandt eq sy-mandt.
+      append &lt;ls_t000&gt; to &lt;lt_t000&gt;.
+
+*     EXAMPLE 2: build a data element and set value
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+      _srql_build-element vv_dest &apos;MANDT&apos; lo_element.
+      assign lo_element-&gt;* to &lt;lv_ele&gt;.
+      &lt;lv_ele&gt; = sy-mandt.
+
+*     EXAMPLE 3: build structures &amp; move fields
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+      _srql_build-structure vv_dest: &apos;BAPIRET2&apos; space lo_line1, &apos;BAPIRETURN&apos; space lo_line2.
+      assign: lo_line1-&gt;* to &lt;ls_line1&gt;, lo_line2-&gt;* to &lt;ls_line2&gt;.
+*     fill line1
+      lv_par = vv_dest. call function &apos;BALW_BAPIRETURN_GET2&apos; exporting type = &apos;S&apos; cl = &apos;ZSRQL&apos; number = &apos;015&apos; par1 = &apos;BAPIRET2&apos; par2 = lv_par importing return = &lt;ls_line1&gt;.
+*     move fields with same name
+      _srql_move-corresponding &lt;ls_line1&gt; &lt;ls_line2&gt;.
+*     set value of other fields
+      _srql_set-field &lt;ls_line1&gt;: &apos;ROW&apos; 1, &apos;SYSTEM&apos; sy-sysid.
+      _srql_move-field &lt;ls_line1&gt; &lt;ls_line2&gt;: &apos;ROW&apos; &apos;LOG_MSG_NO&apos;, &apos;SYSTEM&apos; &apos;CODE&apos;.
+
+*     EXAMPLE 4: move-mapping and append to a itab
+      if vv_break eq &apos;X&apos;. _break. endif.
+
+*     build itab
+      _srql_build-itab vv_dest &apos;BAPIRETURN&apos; space lo_itab.
+      assign lo_itab-&gt;* to &lt;lt_itab&gt;.
+
+*     mapping
+      clear &lt;ls_line2&gt;.
+      ls_map-fieldfrom = &apos;TYPE&apos;.       ls_map-fieldto = &apos;TYPE&apos;.       append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;ID&apos;.         ls_map-fieldto = &apos;CODE&apos;.       append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;MESSAGE&apos;.    ls_map-fieldto = &apos;MESSAGE&apos;.    append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;LOG_NO&apos;.     ls_map-fieldto = &apos;LOG_NO&apos;.     append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;NUMBER&apos;.     ls_map-fieldto = &apos;LOG_MSG_NO&apos;. append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;MESSAGE_V1&apos;. ls_map-fieldto = &apos;MESSAGE_V1&apos;. append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;MESSAGE_V2&apos;. ls_map-fieldto = &apos;MESSAGE_V2&apos;. append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;MESSAGE_V3&apos;. ls_map-fieldto = &apos;MESSAGE_V3&apos;. append ls_map to lt_map.
+      ls_map-fieldfrom = &apos;MESSAGE_V4&apos;. ls_map-fieldto = &apos;MESSAGE_V4&apos;. append ls_map to lt_map.
+
+*     moving fields and adding to itab
+      _srql_move-mapping &lt;ls_line1&gt; &lt;ls_line2&gt; lt_map.
+      append &lt;ls_line2&gt; to &lt;lt_itab&gt;.
+
+    endmethod.
+
   endclass.
 
 * gui definition
@@ -1351,7 +1720,8 @@ report zsrqldemo.
   selection-screen begin of block bl2 with frame title text-002.
 
     parameters: p_type  type xfeld radiobutton group gr1 default &apos;X&apos;,
-                p_query type xfeld radiobutton group gr1.
+                p_query type xfeld radiobutton group gr1,
+                p_macro type xfeld radiobutton group gr1.
 
   selection-screen end of block bl2.
 
@@ -1364,10 +1734,299 @@ start-of-selection.
 
   try.
       create object lo_main.
-      lo_main-&gt;start( vv_dest = p_dest vv_break = p_break vv_type = p_type vv_query = p_query ).
+      lo_main-&gt;start( vv_dest = p_dest vv_break = p_break vv_type = p_type vv_query = p_query vv_macro = p_macro  ).
   catch cx_sy_create_object_error zcx_srqltype into lx_root.
     lv_mess = lx_root-&gt;get_text( ). write: / lv_mess.
   endtry.</source>
+ </PROG>
+ <PROG NAME="ZSRQL" VARCL="X" SUBC="I" RMAND="800" RLOAD="E" UCCHECK="X">
+  <textPool>
+   <language SPRAS="E">
+    <textElement ID="R" ENTRY="Macros" LENGTH="6 "/>
+   </language>
+  </textPool>
+  <source>*&amp;---------------------------------------------------------------------*
+*&amp;  Include           ZSRQL
+*&amp;---------------------------------------------------------------------*
+
+****************************************************************************************************
+* SRQL MACRO LIST                                                                                  *
+****************************************************************************************************
+*  1. _srql_build-type-descriptor: remote type descriptor builder                                  *
+*  2. _srql_build-from-descriptor: remote type builder starting from type descriptor               *
+*  3. _srql_build-element: remote data element builder                                             *
+*  4. _srql_build-structure: remote structure builder                                              *
+*  5. _srql_build-filtered-structure: remote structure builder with a subset of fields             *
+*  6. _srql_build-itab: remote internal table builder                                              *
+*  7. _srql_build-filtered-itab: remote internal table builder with a subset of fields             *
+*  8. _srql_get-field: field value getter for dynamic lines                                        *
+*  9. _srql_set-field: field value setter for dynamic lines                                        *
+* 10. _srql_move-corresponding: move-corresponding field values between dynamic structures         *
+* 11. _srql_move-mapping: move field values as defined in mapping table between dynamic structures *
+* 12. _srql_move-field: move a single field between dynamic structures                             *
+****************************************************************************************************
+
+##NEEDED
+define _srql_build-type-descriptor.
+
+* &amp;1: rfc destination
+* &amp;2: data type (data element, structure, internal table) -&gt; see zif_srqltypekind constants
+* &amp;3: type name (data element or structure)
+* &amp;4: result (ref to zcl_srqltype)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;4 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = &amp;2 typename = &amp;3 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-from-descriptor.
+
+* &amp;1: type descriptor (ref to zcl_srqltype)
+* &amp;2: result: data
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;2 = &amp;1-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-element.
+
+* &amp;1: rfc destination
+* &amp;2: data element name
+* &amp;3: result (data)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;3 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = zif_srqltypekind=&gt;data_element typename = &amp;2 )-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-structure.
+
+* &amp;1: rfc destination
+* &amp;2: structure name
+* &amp;3: with offset-fields
+* &amp;4: result (data)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;4 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = zif_srqltypekind=&gt;structure typename = &amp;2 offset_fields = &amp;3 )-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-filtered-structure.
+
+* &amp;1: rfc destination
+* &amp;2: structure name
+* &amp;3: with offset-fields
+* &amp;4: field list (fieldname_tab itab)
+* &amp;5: result (data)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;5 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = zif_srqltypekind=&gt;structure typename = &amp;2 offset_fields = &amp;3 typefields = &amp;4 )-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-itab.
+
+* &amp;1: rfc destination
+* &amp;2: structure name of itab line
+* &amp;3: with offset-fields
+* &amp;4: result (data)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;4 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = zif_srqltypekind=&gt;table_type typename = &amp;2 offset_fields = &amp;3 )-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_build-filtered-itab.
+
+* &amp;1: rfc destination
+* &amp;2: structure name
+* &amp;3: with offset-fields
+* &amp;4: field list (fieldname_tab itab)
+* &amp;5: result (data)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      &amp;5 = zcl_srqltype=&gt;new( destination = &amp;1 typekind = zif_srqltypekind=&gt;table_type typename = &amp;2 offset_fields = &amp;3 typefields = &amp;4 )-&gt;get_data( ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_get-field.
+
+* &amp;1: structure
+* &amp;2: field name
+* &amp;3: field value
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      zcl_srqlutil=&gt;get_field( exporting line = &amp;1 fieldname = &amp;2 importing value = &amp;3 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_set-field.
+
+* &amp;1: structure
+* &amp;2: field name
+* &amp;3: field value
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      zcl_srqlutil=&gt;set_field( exporting fieldname = &amp;2 value = &amp;3 changing line = &amp;1 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_move-corresponding.
+
+* &amp;1: structure from
+* &amp;2: structure to
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+* sy-dbcnt set to number of corresponding fields moved
+
+  try.
+      ##WRITE_OK
+      zcl_srqlutil=&gt;move_corresponding( exporting linefrom = &amp;1 importing moved = sy-dbcnt changing lineto = &amp;2 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_move-mapping.
+
+* &amp;1: structure from
+* &amp;2: structure to
+* &amp;3: field mapping (internal table zsrqlfieldmap_s_tt)
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+* sy-dbcnt set to number of corresponding fields moved
+
+  try.
+      ##WRITE_OK
+      zcl_srqlutil=&gt;move_mapping( exporting linefrom = &amp;1 fieldmap = &amp;3 importing moved = sy-dbcnt changing lineto = &amp;2 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.
+
+##NEEDED
+define _srql_move-field.
+
+* &amp;1: structure from
+* &amp;2: structure to
+* &amp;3: field from
+* &amp;4: field to
+
+* sy-subrc set to 0 if ok
+* sy-subrc set to 8 if error occurred
+
+  try.
+      zcl_srqlutil=&gt;move_field( exporting linefrom = &amp;1 fieldfrom = &amp;3 fieldto = &amp;4 changing lineto = &amp;2 ).
+      ##WRITE_OK
+      sy-subrc = 0.
+    catch zcx_srqltype.
+      ##WRITE_OK
+      sy-subrc = 8.
+  endtry.
+
+end-of-definition.</source>
  </PROG>
  <TABL TABNAME="ZSRQLSOQUERY_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Query as Select Option" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
   <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
@@ -1383,6 +2042,11 @@ start-of-selection.
   <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="MTEXT" DDLANGUAGE="E" POSITION="0002" ROLLNAME="MTEXT_D" ADMINFIELD="0" INTTYPE="C" INTLEN="000050" DOMNAME="TEXT25" ROUTPUTLEN="000000" HEADLEN="25" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DATATYPE="CHAR" LENG="000025" OUTPUTLEN="000025" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="Client name" REPTEXT="Name" SCRTEXT_S="Name" SCRTEXT_M="Name" SCRTEXT_L="Name" DOMNAME3L="TEXT25" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
   <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="ORT01" DDLANGUAGE="E" POSITION="0003" ROLLNAME="ORT01" ADMINFIELD="0" INTTYPE="C" INTLEN="000050" DOMNAME="TEXT25" ROUTPUTLEN="000000" LOGFLAG="X" HEADLEN="25" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" RESERVEDTE="D" DATATYPE="CHAR" LENG="000025" OUTPUTLEN="000025" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="City" REPTEXT="City" SCRTEXT_S="City" SCRTEXT_M="City" SCRTEXT_L="City" DOMNAME3L="TEXT25" DEPTH="00" COMPTYPE="E" DEFFDNAME="CITY" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
   <dd03p TABNAME="ZSRQLT000DEMO_S" FIELDNAME="CHANGEUSER" DDLANGUAGE="E" POSITION="0004" ROLLNAME="AS4USER" ADMINFIELD="0" INTTYPE="C" INTLEN="000024" DOMNAME="AS4USER" ROUTPUTLEN="000000" HEADLEN="12" SCRLEN1="00" SCRLEN2="18" SCRLEN3="20" DATATYPE="CHAR" LENG="000012" OUTPUTLEN="000012" DECIMALS="000000" MASK="  CHARE" MASKLEN="0000" DDTEXT="Last Changed by" REPTEXT="Author" SCRTEXT_M="Last Changed By" SCRTEXT_L="Last Changed By" DOMNAME3L="AS4USER" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+ </TABL>
+ <TABL TABNAME="ZSRQLFIELDMAP_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Field Mapping" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZSRQLFIELDMAP_S" FIELDNAME="FIELDFROM" DDLANGUAGE="E" POSITION="0001" ROLLNAME="FIELDNAME" ADMINFIELD="0" INTTYPE="C" INTLEN="000060" DOMNAME="FDNAME" ROUTPUTLEN="000000" MEMORYID="DFD" HEADLEN="10" SCRLEN1="10" SCRLEN2="15" SCRLEN3="18" DTELMASTER="D" DATATYPE="CHAR" LENG="000030" OUTPUTLEN="000030" DECIMALS="000000" ENTITYTAB="DD03L" MASK="  CHARE" MASKLEN="0000" DDTEXT="Field Name" REPTEXT="Field Name" SCRTEXT_S="Field" SCRTEXT_M="Field Name" SCRTEXT_L="Field Name" DOMNAME3L="FDNAME" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
+  <dd03p TABNAME="ZSRQLFIELDMAP_S" FIELDNAME="FIELDTO" DDLANGUAGE="E" POSITION="0002" ROLLNAME="FIELDNAME" ADMINFIELD="0" INTTYPE="C" INTLEN="000060" DOMNAME="FDNAME" ROUTPUTLEN="000000" MEMORYID="DFD" HEADLEN="10" SCRLEN1="10" SCRLEN2="15" SCRLEN3="18" DTELMASTER="D" DATATYPE="CHAR" LENG="000030" OUTPUTLEN="000030" DECIMALS="000000" ENTITYTAB="DD03L" MASK="  CHARE" MASKLEN="0000" DDTEXT="Field Name" REPTEXT="Field Name" SCRTEXT_S="Field" SCRTEXT_M="Field Name" SCRTEXT_L="Field Name" DOMNAME3L="FDNAME" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000" OUTPUTSTYLE="00" STRORLOCPOS="00"/>
  </TABL>
  <TABL TABNAME="ZSRQLTIMESTAMP_S" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="Query Result Timestamp" AUTHCLASS="00" PROZPUFF="000" EXCLASS="0">
   <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
@@ -1408,5 +2072,6 @@ start-of-selection.
  </TABL>
  <TTYP TYPENAME="ZSRQLRFCDBOPT_TT" DDLANGUAGE="E" ROWTYPE="RFC_DB_OPT" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Query as Table" TYPELEN="000144" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
  <TTYP TYPENAME="ZSRQLSOQUERY_TT" DDLANGUAGE="E" ROWTYPE="ZSRQLSOQUERY_S" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Query as Select Option" TYPELEN="004162" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
+ <TTYP TYPENAME="ZSRQLFIELDMAP_S_TT" DDLANGUAGE="E" ROWTYPE="ZSRQLFIELDMAP_S" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Field Mapping" TYPELEN="000120" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
  <TTYP TYPENAME="ZSRQLT006T_TT" DDLANGUAGE="E" ROWTYPE="T006T" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="Dimension Text" TYPELEN="000060" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
 </nugget>
